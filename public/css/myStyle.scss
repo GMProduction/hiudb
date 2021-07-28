@@ -16,12 +16,38 @@ body {
   color: white !important;
 }
 
+.t-green{
+  color: green;
+}
+
+.t-red{
+  color: red;
+}
+
+.t-orange{
+  color: orange;
+}
 a {
   all: unset;
 
   .nav-link {
     cursor: pointer;
   }
+}
+
+.link{
+  cursor: pointer;
+  color: $primary-color;
+}
+
+.profile-userpic {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
 }
 
 .title-eventnow {

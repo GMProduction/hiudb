@@ -23,8 +23,16 @@
                     five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was
                     popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
                     recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                <button type="button" class="btn btn-primary btn-lg  ms-2" data-bs-toggle="modal"
-                    data-bs-target="#tambahbarang">Register Now</button>
+
+                @php($login = true)
+                @if ($login)
+                    <a href="register" class="btn btn-primary btn-lg  ms-2" data-bs-toggle="modal" data-bs-target="#register">Register
+                        Now</a>
+                @else
+                    <a href="/login" class="btn btn-primary btn-lg  ms-2">Register Now</a>
+                @endif
+
+
             </div>
         </div>
 
@@ -184,6 +192,31 @@
 
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Tambah-->
+        <div class="modal fade" id="register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Form Register</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">Payment Slip</label>
+                                <input class="form-control" type="file" id="formFile">
+                              </div>
+
+
+                            <div class="mb-4"></div>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </div>

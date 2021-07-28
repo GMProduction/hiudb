@@ -39,6 +39,7 @@
 						<input class="form-control border-0" type="" name="" placeholder="Type Your Password">
 						<br>
 						<button class="btn btn-primary btn-sm border-0" type="submit" name="submit">Login</button>
+						<span class="d-block mt-2">New to HI UDB? <a class="ms-2 link" href="/register-page">Create an account.</a></span>
 					</form>
 					</div>
 					

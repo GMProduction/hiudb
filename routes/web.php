@@ -16,11 +16,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('user/home');
+    return view('home');
 });
 
 Route::get('/login', function () {
     return view('login');
+});
+
+Route::get('/register-page', function () {
+    return view('registerPage');
+});
+
+Route::get('/user', function () {
+    return view('user/dashboard');
 });
 
 Route::get('/admin', function () {

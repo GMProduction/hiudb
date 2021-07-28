@@ -11,12 +11,38 @@ body {
   color: white !important;
 }
 
+.t-green {
+  color: green;
+}
+
+.t-red {
+  color: red;
+}
+
+.t-orange {
+  color: orange;
+}
+
 a {
   all: unset;
 }
 
 a .nav-link {
   cursor: pointer;
+}
+
+.link {
+  cursor: pointer;
+  color: #db3535;
+}
+
+.profile-userpic {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50% !important;
 }
 
 .title-eventnow {
