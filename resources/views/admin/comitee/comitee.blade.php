@@ -18,9 +18,9 @@
 
 
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h5>Data Guru</h5>
+                <h5>Data Comitee</h5>
                 <button type="button ms-auto" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                    data-bs-target="#tambahguru">Tambah Data Guru</button>
+                    data-bs-target="#tambahguru">Tambah Data Comitee</button>
             </div>
 
 
@@ -30,14 +30,17 @@
                         #
                     </th>
                     <th>
-                        nama Guru
+                        Username
                     </th>
                     <th>
-                        Alamat
+                        Name
+                    </th>
+                    <th>
+                        Email
                     </th>
 
                     <th>
-                        TTL
+                        Phone
                     </th>
 
                     <th>
@@ -54,13 +57,18 @@
                         Erfin
                     </td>
                     <td>
-                        Sukoharjo
+                        Erfin Aditya
                     </td>
                     <td>
-                        23 Maret 1994
+                        erfinadit@gmail.com
+                    </td>
                     <td>
+                        0878 4554 7879
+                    </td>
+                    <td>
+                        
                         <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
-                            data-bs-target="#editguru">Ubah</button>
+                            data-bs-target="#tambahComitee">Ubah</button>
                         <button type="button" class="btn btn-danger btn-sm" onclick="hapus('id', 'nama') ">hapus</button>
                     </td>
                 </tr>
@@ -74,11 +82,11 @@
 
 
             <!-- Modal Tambah-->
-            <div class="modal  fade" id="tambahguru" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal  fade" id="tambahComitee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-md">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Tambah Guru</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Tambah Comitee</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -86,18 +94,13 @@
 
 
                                 <div class="mb-3">
-                                    <label for="namaguru" class="form-label">Nama Guru</label>
-                                    <input type="text" class="form-control" id="namaguru">
+                                    <label for="name" class="form-label">Name Lengkap</label>
+                                    <input type="text" class="form-control" id="name">
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="alamatguru" class="form-label">Alamat</label>
-                                    <input type="text" class="form-control" id="alamatguru">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="ttlguru" class="form-label">Tanggal Lahir</label>
-                                    <input type="text"  class="form-control" id="datepicker">
+                                    <label for="email" class="form-label">email</label>
+                                    <input type="email"  class="form-control" id="email">
                                 </div>
     
     
@@ -116,9 +119,6 @@
                                     <input type="password" class="form-control" id="konfirmasi">
                                 </div>
 
-
-
-
                                 <div class="mb-4"></div>
                                 <button type="submit" class="btn btn-primary">Simpan</button>
                             </form>
@@ -128,60 +128,7 @@
                 </div>
             </div>
 
-            <!-- Modal Edit-->
-            <div class="modal  fade" id="editguru" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-md">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Edit Guru</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-
-
-                                <div class="mb-3">
-                                    <label for="editnamaguru" class="form-label">Nama Guru</label>
-                                    <input type="text" class="form-control" id="editnamaguru">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="editalamatguru" class="form-label">Alamat</label>
-                                    <input type="text" class="form-control" id="editalamatguru">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="editttlguru" class="form-label">Tanggal Lahir</label>
-                                    <input type="text"  class="form-control" id="editttlguru">
-                                </div>
-    
-    
-                                <div class="mb-3">
-                                    <label for="editusername" class="form-label">Username</label>
-                                    <input type="text" class="form-control" id="editusername">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="editpassword" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="editpassword">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="editkonfirmasi" class="form-label">Konfirmasi Password</label>
-                                    <input type="password" class="form-control" id="editkonfirmasi">
-                                </div>
-
-
-
-
-                                <div class="mb-4"></div>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+           
         </div>
 
     </section>

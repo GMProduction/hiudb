@@ -52,10 +52,10 @@
             </a>
 
 
-            <a href="/admin/guru">
+            <a href="/admin/comitee">
                 <li href="#" class="nav-link t-white">
                     <i class="bx bxs-group"></i>
-                    <span class="mx-2">Data Guru</span>
+                    <span class="mx-2">Data Comitee</span>
                 </li>
 
             </a>

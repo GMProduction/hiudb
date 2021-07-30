@@ -1,4 +1,4 @@
-@extends('user/base')
+@extends('base')
 
 @section('moreCss')
 @endsection

@@ -39,8 +39,8 @@ Route::get('/admin/barang', function () {
     return view('admin/barang/barang');
 });
 
-Route::get('/admin/guru', function () {
-    return view('admin/guru/guru');
+Route::get('/admin/comitee', function () {
+    return view('admin/comitee/comitee');
 });
 
 Route::get('/admin/siswa', function () {
