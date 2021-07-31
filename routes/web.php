@@ -35,8 +35,8 @@ Route::get('/admin', function () {
     return view('admin/dashboard');
 });
 
-Route::get('/admin/barang', function () {
-    return view('admin/barang/barang');
+Route::get('/admin/event', function () {
+    return view('admin/event/event');
 });
 
 Route::get('/admin/comitee', function () {

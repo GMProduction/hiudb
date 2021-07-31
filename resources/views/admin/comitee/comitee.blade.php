@@ -19,7 +19,7 @@
 
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h5>Data Comitee</h5>
-                <button type="button ms-auto" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                     data-bs-target="#tambahguru">Tambah Data Comitee</button>
             </div>
 

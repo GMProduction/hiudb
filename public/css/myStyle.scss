@@ -35,6 +35,12 @@ a {
   }
 }
 
+.box-border{
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  padding: 16px;
+}
+
 .link{
   cursor: pointer;
   color: $primary-color;
