@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\ComiteeController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\homeController;
 use Illuminate\Support\Facades\Route;
 
@@ -50,12 +52,25 @@ Route::get(
     }
 );
 
-Route::get(
-    '/admin',
-    function () {
-        return view('admin/dashboard');
-    }
-);
+
+Route::prefix('/admin')->group(function (){
+    Route::get('/',function () {
+            return view('admin/dashboard');
+        }
+    );
+
+    Route::prefix('/event')->group(function (){
+        Route::get('/',[EventController::class,'index']);
+        Route::get('/{id}',[EventController::class,'getDetailEvent'])->name('detail-event');
+        Route::post('/{id}/konfirmasi/{participant}', [EventController::class, 'konfirmasi']);
+    });
+
+    Route::get('/comitee',[ComiteeController::class,'index']);
+
+
+});
+
+
 
 Route::get(
     '/admin/barang',

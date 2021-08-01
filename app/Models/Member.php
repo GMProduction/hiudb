@@ -21,4 +21,11 @@ class Member extends Model
         'phone',
         'id_user'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function getUser(){
+        return $this->belongsTo(User::class,'id_user');
+    }
 }
