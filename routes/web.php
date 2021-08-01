@@ -43,18 +43,18 @@ Route::get('/admin/comitee', function () {
     return view('admin/comitee/comitee');
 });
 
-Route::get('/admin/siswa', function () {
-    return view('admin/siswa/siswa');
+
+Route::get('/admin/member', function () {
+    return view('admin/member/member');
 });
 
-Route::get('/admin/mapel', function () {
-    return view('admin/mapel/mapel');
+Route::get('/user/profile', function () {
+    return view('user/profil');
 });
 
-Route::get('/admin/laporanpinjaman', function () {
-    return view('admin/laporan/pinjamalat');
+Route::get('/comitee', function () {
+    return view('comitee/dashboard');
 });
-
 
 Route::post('/register',[AuthController::class,'register']);
 
