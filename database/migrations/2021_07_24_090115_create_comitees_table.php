@@ -18,7 +18,7 @@ class CreateComiteesTable extends Migration
             $table->bigInteger('id_user')->unsigned()->nullable(true);
             $table->foreign('id_user')->references('id')->on('users');
             $table->string('name');
-            $table->string('phone');
+            $table->string('phone')->nullable(true)->default(null);
             $table->timestamps();
         });
     }

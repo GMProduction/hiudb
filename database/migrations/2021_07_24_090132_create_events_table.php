@@ -19,14 +19,14 @@ class CreateEventsTable extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->text('event_location');
-            $table->text('url');
-            $table->text('latitude');
-            $table->text('longitude');
+            $table->text('url')->nullable(true)->default(null);
+            $table->text('latitude')->nullable(true)->default(null);
+            $table->text('longitude')->nullable(true)->default(null);
             $table->text('description');
             $table->date('start_register_date');
             $table->date('end_register_date');
             $table->integer('quota');
-            $table->text('url_cover');
+            $table->text('url_cover')->nullable(true)->default(null);
             $table->bigInteger('id_comitee')->unsigned()->nullable(true);
             $table->foreign('id_comitee')->references('id')->on('comitees');
             $table->timestamps();

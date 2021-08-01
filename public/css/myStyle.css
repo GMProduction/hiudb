@@ -58,6 +58,12 @@ a .nav-link {
 .description-eventnow {
   color: #333;
   font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    /* number of lines to show */
+    -webkit-box-orient: vertical;
 }
 
 .cardku {

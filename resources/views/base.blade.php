@@ -15,6 +15,8 @@
         rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/myStyle.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/shimer.css') }}" type="text/css">
+    <script src="{{ asset('js/swal.js') }}"></script>
 
 
 </head>
@@ -46,7 +48,7 @@
                             <a class="nav-link" href="https://udb.ac.id/">About Us</a>
                         </li>
 
-                    
+
                     </ul>
 
                     <div style="width: 100px">
@@ -189,13 +191,15 @@
         </div> --}}
 
     </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script src="{{ asset('bootstrap/js/jquery.js') }}"></script>
     <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('js/hero-slider.js') }}"></script>
+    <script src="{{ asset('js/moment.js') }}"></script>
     {{-- <script src="{{ asset('js/myStyle.js') }}"></script> --}}
 
 
+    @yield('script')
 
 
 

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\homeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,48 +16,83 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get(
+    '/',
+    function () {
+        return view('home');
+    }
+);
+Route::get('/event-now', [homeController::class, 'getNowEvent']);
+Route::get('/incoming-event', [homeController::class, 'incomingEvent']);
+Route::get('/past-event', [homeController::class, 'pastEvent']);
+Route::post('/register-event', [homeController::class, 'registerEvent']);
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/login',function () {
+        return view('login');
+    }
+);
 
-Route::get('/register-page', function () {
-    return view('registerPage');
-});
+Route::post('/login', [AuthController::class,'login']);
+Route::get('/logout', [AuthController::class,'logout']);
 
-Route::get('/user', function () {
-    return view('user/dashboard');
-});
+Route::get(
+    '/register-page',
+    function () {
+        return view('registerPage');
+    }
+);
+Route::post('/register-page', [AuthController::class, 'registerMember']);
 
-Route::get('/admin', function () {
-    return view('admin/dashboard');
-});
+Route::get(
+    '/user',
+    function () {
+        return view('user/dashboard');
+    }
+);
 
-Route::get('/admin/barang', function () {
-    return view('admin/barang/barang');
-});
+Route::get(
+    '/admin',
+    function () {
+        return view('admin/dashboard');
+    }
+);
 
-Route::get('/admin/guru', function () {
-    return view('admin/guru/guru');
-});
+Route::get(
+    '/admin/barang',
+    function () {
+        return view('admin/barang/barang');
+    }
+);
 
-Route::get('/admin/siswa', function () {
-    return view('admin/siswa/siswa');
-});
+Route::get(
+    '/admin/guru',
+    function () {
+        return view('admin/guru/guru');
+    }
+);
 
-Route::get('/admin/mapel', function () {
-    return view('admin/mapel/mapel');
-});
+Route::get(
+    '/admin/siswa',
+    function () {
+        return view('admin/siswa/siswa');
+    }
+);
 
-Route::get('/admin/laporanpinjaman', function () {
-    return view('admin/laporan/pinjamalat');
-});
+Route::get(
+    '/admin/mapel',
+    function () {
+        return view('admin/mapel/mapel');
+    }
+);
 
+Route::get(
+    '/admin/laporanpinjaman',
+    function () {
+        return view('admin/laporan/pinjamalat');
+    }
+);
 
-Route::post('/register',[AuthController::class,'register']);
+Route::post('/register', [AuthController::class, 'register']);
 
 Route::get('/barang', [BarangController::class, 'index']);
 Route::post('/barang', [BarangController::class, 'createProduct']);

@@ -53,6 +53,27 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
         ],
 
+        'imagePassport' => [
+            'driver' => 'local',
+            'root' => public_path() . '/images/passport',
+            'url' => env('APP_URL') . '/storage',
+            'visibility' => 'public',
+        ],
+
+        'imageEvent' => [
+            'driver' => 'local',
+            'root' => public_path() . '/images/event',
+            'url' => env('APP_URL') . '/storage',
+            'visibility' => 'public',
+        ],
+
+        'imagePayment' => [
+            'driver' => 'local',
+            'root' => public_path() . '/images/payment',
+            'url' => env('APP_URL') . '/storage',
+            'visibility' => 'public',
+        ],
+
     ],
 
     /*

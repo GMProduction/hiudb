@@ -18,7 +18,7 @@ class CreateMembersTable extends Migration
             $table->bigInteger('id_user')->unsigned()->nullable(true);
             $table->foreign('id_user')->references('id')->on('users');
             $table->string('name');
-            $table->string('paspor');
+            $table->string('passport');
             $table->string('country');
             $table->string('institute');
             $table->string('address');

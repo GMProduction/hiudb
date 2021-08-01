@@ -17,7 +17,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'username',
+        'role',
+        'last_login',
         'email',
         'password',
     ];
@@ -40,4 +42,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function getMember(){
+        return $this->hasOne(Member::class,'id_user');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function getAdmin(){
+        return $this->hasOne(Admin::class,'id_user');
+    }
 }

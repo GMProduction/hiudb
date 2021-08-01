@@ -17,9 +17,9 @@ class CreateParticipantsTable extends Migration
             $table->id();
             $table->bigInteger('id_event')->unsigned()->nullable(true);
             $table->foreign('id_event')->references('id')->on('events');
-            $table->char('status');
+            $table->tinyInteger('status')->default();
             $table->text('url_payment');
-            $table->text('reason_of_reject');
+            $table->text('reason_of_reject')->nullable(true)->default(null);
             $table->timestamps();
         });
     }
