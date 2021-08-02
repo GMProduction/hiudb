@@ -16,8 +16,7 @@
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h5 class="mb-3">Peserta yang ingin mengikuti event</h5>
 
-                <button type="button ms-auto" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#tambahevent">Tambah Event
+                <button type="button ms-auto" class="btn btn-primary btn-sm" id="addData">Tambah Event
                 </button>
 
             </div>
@@ -60,10 +59,10 @@
                             {{$e->event_name}}
                         </td>
                         <td>
-                            {{$e->start_date}}
+                            {{date('d-m-Y', strtotime($e->start_date))}}
                         </td>
                         <td>
-                            {{$e->end_date}}
+                            {{date('d-m-Y', strtotime($e->end_date))}}
                         </td>
                         <td>
                             {{$e->event_location}}
@@ -85,6 +84,7 @@
                         </td>
                     </tr>
                 @empty
+                    <tr><td colspan="8">Tidak ada data event</td></tr>
                 @endforelse
 
             </table>
@@ -125,10 +125,10 @@
 
                                     <div class="mb-3">
                                         <label class="form-label">Map</label>
-                                        <a class="d-block" style="cursor: pointer" target="_blank"
-                                           href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.9920584448178!2d110.81791511530605!3d-7.57584207693839!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a1664d786aa4b%3A0xe2291734e194937c!2sJl.%20Gatot%20Subroto%20158-154%2C%20Jayengan%2C%20Kec.%20Serengan%2C%20Kota%20Surakarta%2C%20Jawa%20Tengah%2057152!5e0!3m2!1sen!2sid!4v1627715326856!5m2!1sen!2sid">
+                                        <a id="targetMap" class="d-block" style="cursor: pointer" target="_blank"
+                                           href="">
                                             <iframe
-                                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.9920584448178!2d110.81791511530605!3d-7.57584207693839!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a1664d786aa4b%3A0xe2291734e194937c!2sJl.%20Gatot%20Subroto%20158-154%2C%20Jayengan%2C%20Kec.%20Serengan%2C%20Kota%20Surakarta%2C%20Jawa%20Tengah%2057152!5e0!3m2!1sen!2sid!4v1627715326856!5m2!1sen!2sid"
+                                                src=""
                                                 width="200" height="150" style="border:0;" allowfullscreen=""
                                                 loading="lazy"></iframe>
 
@@ -312,11 +312,20 @@
                                     </a>
                                 </div>
 
+                                <div class="mb-3">
+                                    <label class="form-label">Status</label>
+                                    <p class="fw-bold" id="txtStatus"></p>
+                                </div>
+
+                                <div class="mb-3" id="ketAlasan">
+                                    <label class="form-label">Alasan</label>
+                                    <p class="fw-bold" id="txtAlasan"></p>
+                                </div>
+
                                 <div class="mb-4"></div>
                                 <div id="btnKonfirmasi" class="">
                                     <a type="submit" id="konfirmasi" class="btn btn-primary konfirmasi" data-status="1" >Terima</a>
-                                    <a class="btn btn-danger" data-bs-toggle="modal" href="#alasanMenolak"
-                                       data-bs-target="#alasanMenolak">Tolak</a>
+                                    <a class="btn btn-danger" id="alasanTolak">Tolak</a>
                                 </div>
 
                             </div>
@@ -362,44 +371,45 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
-
+                    <form id="formTambahEvent" method="post" enctype="multipart/form-data">
+                    @csrf
+                        <input id="id" name="id">
                         <div class="row">
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label for="namaEvent" class="form-label">Nama Event</label>
-                                    <input type="text" class="form-control" id="namaEvent">
+                                    <input type="text" class="form-control" id="event_name" name="event_name">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="mulaiEvent" class="form-label">Mulai Event</label>
-                                    <input type="text" class="form-control datepicker" id="mulaiEvent">
+                                    <input type="date" class="form-control" id="start_date" name="start_date">
                                 </div>
 
 
                                 <div class="mb-3">
                                     <label for="akhirEvent" class="form-label">Akhir Event</label>
-                                    <input type="text" class="form-control datepicker" id="akhirEvent">
+                                    <input type="date" class="form-control" id="end_date" name="end_date">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="lokasiEvent" class="form-label">Lokasi</label>
-                                    <input type="text" class="form-control" id="lokasiEvent">
+                                    <input type="text" class="form-control" id="event_location" name="event_location">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="latitudeEvent" class="form-label">Latitude</label>
-                                    <input type="text" class="form-control" id="latitudeEvent">
+                                    <input type="text" class="form-control" id="latitude" name="latitude">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="LongitudeEvent" class="form-label">Longitude</label>
-                                    <input type="text" class="form-control" id="LongitudeEvent">
+                                    <input type="text" class="form-control" id="longitude" name="longitude">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="deskripsiEvent" class="form-label">Deskripsi</label>
-                                    <textarea class="form-control" id="deskripsiEvent" rows="3"></textarea>
+                                    <textarea class="form-control" id="description" name="description" rows="3"></textarea>
                                 </div>
 
                             </div>
@@ -408,27 +418,37 @@
 
                                 <div class="mb-3">
                                     <label for="mulaiPendaftaranEvent" class="form-label">Mulai Pendaftaran</label>
-                                    <input type="text" class="form-control datepicker" id="mulaiPendaftaranEvent">
+                                    <input type="date" class="form-control" id="start_register_date" name="start_register_date">
                                 </div>
 
 
                                 <div class="mb-3">
                                     <label for="akhirPendaftaranEvent" class="form-label">Akhir Pendaftaran</label>
-                                    <input type="text" class="form-control datepicker" id="ahkirPendaftaranEvent">
+                                    <input type="date" class="form-control" id="end_register_date" name="end_register_date">
                                 </div>
 
 
                                 <div class="mb-3">
                                     <label for="kuotaEvent" class="form-label">Kuota</label>
-                                    <input type="text" class="form-control" id="kuotaEvent">
+                                    <input type="text" class="form-control" id="quota" name="quota">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="kuotaEvent" class="form-label">Cover</label>
+                                    <input type="file" class="form-control" id="url_cover" name="url_cover">
+                                    <a class="d-block mt-2" id="imgcover" style="cursor: pointer" target="_blank"
+                                       href="">
+                                        <img src=""
+                                             style="height: 150px; width: 200px; object-fit: cover"/>
+
+                                    </a>
                                 </div>
 
                                 <a>Pilih Comitee</a>
-                                <select class="form-select" aria-label="Default select example" name="idguru">
+                                <select class="form-select" aria-label="Default select example" name="id_comitee" id="id_comitee">
                                     <option selected>Pilih Comitee</option>
-                                    <option value="1">Erfin</option>
-                                    <option value="2">Joko A</option>
-                                    <option value="3">Joko B</option>
+                                    @foreach($comitee as $com)
+                                        <option value="{{$com->id}}">{{$com->name}}</option>
+                                    @endforeach
                                 </select>
 
                                 <div class="mb-4"></div>
@@ -453,27 +473,66 @@
             $(".datepicker").datepicker();
         });
 
+        var eventId, participantId;
+
+
         $(document).on('click', '#detailData', async function () {
             var id = $(this).data('id');
             getDetailEvent(id);
             $('#detail').modal('show');
         })
 
+        $(document).on('click', '#addData', async function () {
+            $('#formTambahEvent input').val('');
+            $('#formTambahEvent textarea').val('');
+            $('#formTambahEvent select').val('');
+            $('#formTambahEvent #imgcover').addClass('d-none');
+            $('#tambahevent').modal('show');
+        })
+        $(document).on('click', '#editData', async function () {
+            var id = $(this).data('id');
+            $('#formTambahEvent #id').val(id);
+
+            $.get('/admin/event/' + id, function (data) {
+                $('#formTambahEvent #event_name').val(data['event_name']);
+                $('#formTambahEvent #start_date').val(data['start_date']);
+                $('#formTambahEvent #end_date').val(data['end_date']);
+                $('#formTambahEvent #event_location').val(data['event_location']);
+                $('#formTambahEvent #latitude').val(data['latitude']);
+                $('#formTambahEvent #longitude').val(data['longitude']);
+                $('#formTambahEvent #start_register_date').val(data['start_register_date']);
+                $('#formTambahEvent #end_register_date').val(data['end_register_date']);
+                $('#formTambahEvent #quota').val(data['quota']);
+                $('#formTambahEvent textarea').val(data['description']);
+                $('#formTambahEvent select').val(data['id_comitee']);
+                if(data['url_cover']){
+                    $('#formTambahEvent #imgcover').removeClass('d-none').attr('href',data['url_cover']);
+                    $('#formTambahEvent #imgcover img').attr('src',data['url_cover']);
+                }
+            })
+            $('#tambahevent').modal('show');
+        })
+
+        $(document).on('click','#alasanTolak', function () {
+            $('#alasanMenolak #alassan').val('');
+            $('#alasanMenolak').modal('show')
+        })
         function getDetailEvent(id) {
             $.get('/admin/event/' + id, function (data) {
                 $('#detail #name_event').html(data['event_name']);
-                $('#detail #start_date').html(data['start_date']);
-                $('#detail #end_date').html(data['end_date']);
+                $('#detail #start_date').html(moment(data['start_date']).format('DD MMMM YYYY'));
+                $('#detail #end_date').html(moment(data['end_date']).format('DD MMMM YYYY'));
                 $('#detail #location').html(data['event_location']);
                 $('#detail #remaining').html(data['remaining']);
-                $('#detail #start_register').html(data['start_register_date']);
-                $('#detail #end_register').html(data['end_register_date']);
+                $('#detail #start_register').html(moment(data['start_register_date']).format('DD MMMM YYYY'));
+                $('#detail #end_register').html(moment(data['end_register_date']).format('DD MMMM YYYY'));
                 $('#detail #cover').attr('href', data['url_cover']);
                 $('#detail #cover img').attr('src', data['url_cover'])
                 var tabel = $('#tabel_participant');
                 tabel.empty();
                 $('#divTabel').removeClass('h400');
-
+                $('#targetMap').attr('href','https://maps.google.com/maps?q='+data['latitude']+','+data['longitude']+'&z=15&output=embed')
+                $('#targetMap iframe').attr('src','https://maps.google.com/maps?q='+data['latitude']+','+data['longitude']+'&z=15&output=embed')
                 if (data['get_participant'].length > 0) {
                     $.each(data['get_participant'], function (key, value) {
                         $('#divTabel').addClass('h400');
@@ -487,7 +546,7 @@
                             '<td>' + member['get_user']['email'] + '</td>' +
                             '<td>' + member['phone'] + '</td>' +
                             '<td>' + status + '</td>' +
-                            '<td><a type="button" class="btn btn-primary btn-sm" data-event-id="' + id + '" data-status="' + value['status'] + '" id="detailDataParticipant" data-remaining="' + data['remaining'] + '" data-event-name="' + data['event_name'] + '"  data-passport="' + member['url_passport'] + '" data-payment="' + value['url_payment'] + '" ' +
+                            '<td><a type="button" class="btn btn-primary btn-sm" data-reason="'+value['reason_of_reject']+'"  data-event-id="' + id + '" data-status="' + value['status'] + '" id="detailDataParticipant" data-remaining="' + data['remaining'] + '" data-event-name="' + data['event_name'] + '"  data-passport="' + member['url_passport'] + '" data-payment="' + value['url_payment'] + '" ' +
                             'data-country="' + member['country'] + '" data-email="' + member['get_user']['email'] + '" data-dob="' + member['dob'] + '" data-address="' + member['address'] + '" data-institute="' + member['institute'] + '" data-name="' + member['name'] + '" data-id="' + value['id'] + '">Detail</a></td>' +
                             '</tr>';
                         tabel.append(row);
@@ -501,14 +560,14 @@
         }
 
        $(document).on('click', '#konfirmasi', function () {
-           var eventId = $(this).data('event-id');
-           var participantId = $(this).data('participant-id');
+
            var status = $(this).data('status');
            var textSt = status === 2 ? 'Ditolak' : 'Diterima';
            var alasan = $('#alassan').val();
 
            console.log(eventId);
            console.log(participantId);
+           console.log(status);
            let dataSend = {
                'status': status,
                '_token': '{{csrf_token()}}',
@@ -543,6 +602,15 @@
                                    }).then((dat) => {
                                        getDetailEvent(eventId);
                                        $('#btnKonfirmasi').addClass('d-none');
+                                       $('#alasanMenolak').modal('hide')
+                                       $('#detail-participant #ketAlasan').addClass('d-none');
+
+                                       if (status === 2){
+                                           $('#detail-participant #ketAlasan').removeClass('d-none');
+                                           $('#detail-participant #txtAlasan').html(alasan)
+                                       }
+                                       $('#detail-participant #txtStatus').html(textSt)
+                                       $('#alassan').val('');
                                    });
                                } else {
                                    swal(data['payload']['msg'])
@@ -570,22 +638,29 @@
             var email = $(this).data('email');
             var country = $(this).data('country');
             var passport = $(this).data('passport');
-            var dob = $(this).data('dob');
+            var dob = moment($(this).data('dob')).format('DD MMMM YYYY');
             var payment = $(this).data('payment');
             var address = $(this).data('address');
             var institute = $(this).data('institute');
             var eventName = $(this).data('event-name');
             var remaining = $(this).data('remaining');
             var status = $(this).data('status');
+            var reason = $(this).data('reason');
+            var textSt = status === 2 ? 'Ditolak' : status === 1 ? 'Diterima' : 'Menunggu';
+            eventId = $(this).data('event-id');
+            participantId = $(this).data('id');
             $('#btnKonfirmasi').addClass('d-none');
-            $('.konfirmasi').removeAttr('data-event-id').removeAttr('data-participant-id');
-            $('.konfirmasi').attr('data-event-id', $(this).data('event-id')).attr('data-participant-id', $(this).data('id'));
+            $('#detail-participant #ketAlasan').removeClass('d-none');
+
             // $('#alasanMenolak #konfirmasi').attr('data-event-id', $(this).data('event-id')).attr('data-participant-id', $(this).data('id'));
             // $('#tolak').attr('data-event-id', $(this).data('event-id')).attr('data-participant-id', $(this).data('id'));
             if (status === 0) {
                 $('#btnKonfirmasi').removeClass('d-none');
+                $('#detail-participant #ketAlasan').addClass('d-none');
 
             }
+            $('#detail-participant #txtStatus').html(textSt);
+            $('#detail-participant #txtAlasan').html(reason);
             $('#detail-participant #name_event').html(eventName);
             $('#detail-participant #remaining').html(remaining);
             $('#detail-participant #name').html(name);

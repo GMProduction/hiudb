@@ -9,6 +9,21 @@ class Event extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'event_name',
+        'start_date',
+        'end_date',
+        'event_location',
+        'latitude',
+        'longitude',
+        'description',
+        'start_register_date',
+        'end_register_date',
+        'quota',
+        'url_cover',
+        'id_comitee',
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -20,6 +35,6 @@ class Event extends Model
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function getParticipant(){
-        return $this->hasMany(Participant::class,'id_event');
+        return $this->hasMany(Participant::class,'id_event')->orderBy('status','ASC');
     }
 }

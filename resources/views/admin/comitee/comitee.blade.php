@@ -19,19 +19,15 @@
 
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h5>Data Comitee</h5>
-                <button type="button ms-auto" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                    data-bs-target="#tambahguru">Tambah Data Comitee</button>
+                <button type="button ms-auto" class="btn btn-primary btn-sm" id="addData">Tambah Data Comitee</button>
             </div>
-
 
             <table class="table table-striped table-bordered ">
                 <thead>
                     <th>
                         #
                     </th>
-                    <th>
-                        Username
-                    </th>
+
                     <th>
                         Name
                     </th>
@@ -48,31 +44,30 @@
                     </th>
 
                 </thead>
+                @forelse($comitee as $key => $e)
 
                 <tr>
                     <td>
-                        1
+                        {{$key + 1}}
                     </td>
                     <td>
-                        Erfin
+                        {{$e->getComitee->name}}
                     </td>
                     <td>
-                        Erfin Aditya
+                        {{$e->email}}
                     </td>
                     <td>
-                        erfinadit@gmail.com
+                        {{$e->getComitee->phone}}
                     </td>
                     <td>
-                        0878 4554 7879
-                    </td>
-                    <td>
-                        
-                        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
-                            data-bs-target="#tambahComitee">Ubah</button>
+
+                        <button type="button" class="btn btn-success btn-sm" id="editData" data-id="{{$e->id}}" data-phone="{{$e->getComitee->phone}}" data-email="{{$e->email}}" data-name="{{$e->getComitee->name}}">Ubah</button>
                         <button type="button" class="btn btn-danger btn-sm" onclick="hapus('id', 'nama') ">hapus</button>
                     </td>
                 </tr>
-
+                @empty
+                    <tr><td colspan="5">Tidak ada data event</td></tr>
+                @endforelse
             </table>
 
         </div>
@@ -90,33 +85,29 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form>
-
-
+                            <form id="formAdd" method="post">
+                               @csrf
+                                <input id="id" name="id">
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Name Lengkap</label>
-                                    <input type="text" class="form-control" id="name">
+                                    <input type="text" class="form-control" id="name" name="name">
                                 </div>
-
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">No. Hp</label>
+                                    <input type="number" class="form-control" id="phone" name="phone">
+                                </div>
                                 <div class="mb-3">
                                     <label for="email" class="form-label">email</label>
-                                    <input type="email"  class="form-control" id="email">
+                                    <input type="email"  class="form-control" id="email" name="email">
                                 </div>
-       
-    
-                                <div class="mb-3">
-                                    <label for="username" class="form-label">Username</label>
-                                    <input type="text" class="form-control" id="username">
-                                </div>
-
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="password">
+                                    <input type="password" class="form-control" id="password" name="password">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="konfirmasi" class="form-label">Konfirmasi Password</label>
-                                    <input type="password" class="form-control" id="konfirmasi">
+                                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
                                 </div>
 
                                 <div class="mb-4"></div>
@@ -128,7 +119,7 @@
                 </div>
             </div>
 
-           
+
         </div>
 
     </section>
@@ -139,6 +130,21 @@
     <script>
         $(document).ready(function() {
 
+        })
+
+        $(document).on('click', '#addData', function () {
+            $('#tambahComitee #formAdd input').val('');
+            $('#tambahComitee').modal('show')
+        })
+
+        $(document).on('click', '#editData', function () {
+            $('#tambahComitee #id').val($(this).data('id'));
+            $('#tambahComitee #name').val($(this).data('name'));
+            $('#tambahComitee #email').val($(this).data('email'));
+            $('#tambahComitee #phone').val($(this).data('phone'));
+            $('#tambahComitee #password').val('*************');
+            $('#tambahComitee #password_confirmation').val('*************');
+            $('#tambahComitee').modal('show')
         })
 
         function hapus(id, name) {

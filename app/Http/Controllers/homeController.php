@@ -26,7 +26,7 @@ class homeController extends CustomController
     public function getNowEvent(){
         $event = Event::where([['start_register_date','<=', $this->now],['end_register_date','>=', $this->now]])->orderBy('start_register_date','asc')->first();
         if ($event){
-            $participant = Participant::where('id_event','=',$event->id)->get();
+            $participant = Participant::where([['id_event','=',$event->id],['status','=',1]])->get();
             $sold = count($participant);
             $stok = (int) $event->quota - (int)$sold;
             $event = Arr::add($event, 'remaining', $stok);

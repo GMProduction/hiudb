@@ -53,73 +53,40 @@ Route::get(
 );
 
 
-Route::prefix('/admin')->group(function (){
-    Route::get('/',function () {
+Route::prefix('/admin')->group(function () {
+    Route::get(
+        '/',
+        function () {
             return view('admin/dashboard');
         }
     );
 
-    Route::prefix('/event')->group(function (){
-        Route::get('/',[EventController::class,'index']);
-        Route::get('/{id}',[EventController::class,'getDetailEvent'])->name('detail-event');
-        Route::post('/{id}/konfirmasi/{participant}', [EventController::class, 'konfirmasi']);
+    Route::prefix('/event')->group(
+        function () {
+            Route::get('/', [EventController::class, 'index']);
+            Route::post('/', [EventController::class, 'index']);
+            Route::get('/{id}', [EventController::class, 'getDetailEvent'])->name('detail-event');
+            Route::post('/{id}/konfirmasi/{participant}', [EventController::class, 'konfirmasi']);
+        }
+    );
+
+    Route::get('/comitee', [ComiteeController::class, 'index']);
+    Route::post('/comitee', [ComiteeController::class, 'index']);
+
+    Route::get('/member', function () {
+        return view('admin/member/member');
     });
 
-    Route::get('/comitee',[ComiteeController::class,'index']);
-
-
-
-
-Route::get('/admin/member', function () {
-    return view('admin/member/member');
 });
+
+
 
 Route::get('/user/profile', function () {
     return view('user/profil');
 
 });
 
-Route::get('/comitee', function () {
-    return view('comitee/dashboard');
-});
 
-
-Route::get(
-    '/admin/barang',
-    function () {
-        return view('admin/barang/barang');
-    }
-);
-
-Route::get(
-    '/admin/guru',
-    function () {
-        return view('admin/guru/guru');
-    }
-);
-
-Route::get(
-    '/admin/siswa',
-    function () {
-        return view('admin/siswa/siswa');
-    }
-);
-
-Route::get(
-    '/admin/mapel',
-    function () {
-        return view('admin/mapel/mapel');
-    }
-);
-
-Route::get(
-    '/admin/laporanpinjaman',
-    function () {
-        return view('admin/laporan/pinjamalat');
-    }
-);
 
 Route::post('/register', [AuthController::class, 'register']);
 
-Route::get('/barang', [BarangController::class, 'index']);
-Route::post('/barang', [BarangController::class, 'createProduct']);

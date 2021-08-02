@@ -56,4 +56,11 @@ class User extends Authenticatable
     public function getAdmin(){
         return $this->hasOne(Admin::class,'id_user');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function getComitee(){
+        return $this->hasOne(Comitee::class, 'id_user');
+    }
 }
