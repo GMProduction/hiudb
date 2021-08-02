@@ -68,8 +68,20 @@ Route::prefix('/admin')->group(function (){
     Route::get('/comitee',[ComiteeController::class,'index']);
 
 
+
+
+Route::get('/admin/member', function () {
+    return view('admin/member/member');
 });
 
+Route::get('/user/profile', function () {
+    return view('user/profil');
+
+});
+
+Route::get('/comitee', function () {
+    return view('comitee/dashboard');
+});
 
 
 Route::get(

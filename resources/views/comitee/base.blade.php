@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HI UDB</title>
+    <title>Bootstrap 5 Side Bar Navigation</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,6 +23,8 @@
     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet" />
     <!-- custom css -->
 
+    @yield('css')
+
     <script src="{{ asset('js/swal.js') }}"></script>
 
 </head>
@@ -32,42 +34,29 @@
     <div class="side-navbar active-nav d-flex justify-content-between  flex-wrap flex-column" id="sidebar">
         <ul class="nav flex-column text-white w-100 h-100">
             <a href="#" class="nav-link h3 text-white my-2">
-                HI UDB
+               HI UDB
             </a>
 
 
             
-            <a href="/admin">
+            <a href="/comitee">
                 <li href="#" class="nav-link t-white">
                     <i class="bx bxs-dashboard"></i>
                     <span class="mx-2">Dashboard</span>
                 </li>
             </a>
 
-            <a href="/admin/event">
-                <li href="#" class="nav-link t-white">
-                    <i class="bx bxs-calendar-check"></i>
-                    <span class="mx-2">Event</span>
-                </li>
-            </a>
-
-
-            <a href="/admin/comitee">
-                <li href="#" class="nav-link t-white">
-                    <i class="bx bxs-face"></i>
-                    <span class="mx-2">Data Comitee</span>
-                </li>
-
-            </a>
-
-            <a href="/admin/member">
-                <li href="#" class="nav-link t-white">
-                    <i class="bx bxs-group"></i>
-                    <span class="mx-2">Data Member</span>
-                </li>
-
-            </a>
            
+
+{{-- 
+            <a href="/user/profile">
+                <li href="#" class="nav-link t-white">
+                    <i class="bx bxs-happy-beaming"></i>
+                    <span class="mx-2">Profile</span>
+                </li>
+
+            </a> --}}
+
 
 
             <a href="/logout" class="mt-auto">

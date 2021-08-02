@@ -37,7 +37,7 @@
 
 
             
-            <a href="/admin">
+            <a href="/user">
                 <li href="#" class="nav-link t-white">
                     <i class="bx bxs-dashboard"></i>
                     <span class="mx-2">Dashboard</span>
@@ -47,7 +47,7 @@
            
 
 
-            <a href="/admin/siswa">
+            <a href="/user/profile">
                 <li href="#" class="nav-link t-white">
                     <i class="bx bxs-happy-beaming"></i>
                     <span class="mx-2">Profile</span>
