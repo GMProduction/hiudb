@@ -51,22 +51,22 @@
                         {{$key + 1}}
                     </td>
                     <td>
-                        {{$e->getComitee->name}}
+                        {{$e->getComitee->name ?? ''}}
                     </td>
                     <td>
                         {{$e->email}}
                     </td>
                     <td>
-                        {{$e->getComitee->phone}}
+                        {{$e->getComitee->phone ?? ''}}
                     </td>
                     <td>
 
-                        <button type="button" class="btn btn-success btn-sm" id="editData" data-id="{{$e->id}}" data-phone="{{$e->getComitee->phone}}" data-email="{{$e->email}}" data-name="{{$e->getComitee->name}}">Ubah</button>
+                        <button type="button" class="btn btn-success btn-sm" id="editData" data-id="{{$e->id}}" data-phone="{{$e->getComitee->phone ?? ''}}" data-email="{{$e->email}}" data-name="{{$e->getComitee->name ?? ''}}">Ubah</button>
                         <button type="button" class="btn btn-danger btn-sm" onclick="hapus('id', 'nama') ">hapus</button>
                     </td>
                 </tr>
                 @empty
-                    <tr><td colspan="5">Tidak ada data event</td></tr>
+                    <tr><td colspan="5" class="text-center">Tidak ada data comitee</td></tr>
                 @endforelse
             </table>
 
@@ -85,7 +85,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form id="formAdd" method="post">
+                            <form id="formAdd" method="post" onsubmit="return reegister()">
                                @csrf
                                 <input id="id" name="id">
                                 <div class="mb-3">
@@ -133,7 +133,12 @@
         })
 
         $(document).on('click', '#addData', function () {
-            $('#tambahComitee #formAdd input').val('');
+            $('#tambahComitee #id').val('');
+            $('#tambahComitee #name').val('');
+            $('#tambahComitee #email').val('');
+            $('#tambahComitee #phone').val('');
+            $('#tambahComitee #password').val('');
+            $('#tambahComitee #password_confirmation').val('');
             $('#tambahComitee').modal('show')
         })
 
@@ -164,6 +169,54 @@
                         swal("Data belum terhapus");
                     }
                 });
+        }
+
+        function reegister() {
+            swal({
+                title: "Tambah data comitee",
+                text: "Apa kamu yakin ?",
+                icon: "info",
+                buttons: true,
+                primariMode: true,
+            })
+                .then((res) => {
+                    if (res) {
+                        $.ajax({
+                            type: "POST",
+                            data: $('#formAdd').serialize(),
+                            headers: {
+                                'Accept': "application/json"
+                            },
+                            success: function (data, textStatus, xhr) {
+                                console.log(data)
+
+                                if (xhr.status === 200) {
+                                    swal("Berhasil", {
+                                        icon: "success",
+                                    }).then((dat) => {
+                                        window.location.reload();
+
+                                    });
+                                } else {
+                                    swal(data['msg'])
+                                }
+                                console.log()
+                            },
+                            complete: function (xhr, textStatus) {
+                                console.log(xhr.status);
+                                console.log(textStatus);
+                            },
+                            error: function (error, xhr, textStatus) {
+                                // console.log("LOG ERROR", error.responseJSON.errors);
+                                // console.log("LOG ERROR", error.responseJSON.errors[Object.keys(error.responseJSON.errors)[0]][0]);
+                                console.log(xhr.status);
+                                console.log(textStatus);
+                                swal(error.responseJSON.errors[Object.keys(error.responseJSON.errors)[0]][0])
+                            }
+                        })
+                    }
+                });
+            return false;
         }
     </script>
     <script>

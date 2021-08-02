@@ -24,7 +24,8 @@ class homeController extends CustomController
      * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
     public function getNowEvent(){
-        $event = Event::where([['start_register_date','<=', $this->now],['end_register_date','>=', $this->now]])->orderBy('start_register_date','asc')->first();
+        $event = Event::with(['getParticipant.getMember.getUser'])->where([['start_register_date','<=', date_format($this->now, 'Y-m-d')],['end_register_date','>=', date_format($this->now, 'Y-m-d')]])->orderBy('start_register_date','asc')->first();
+
         if ($event){
             $participant = Participant::where([['id_event','=',$event->id],['status','=',1]])->get();
             $sold = count($participant);

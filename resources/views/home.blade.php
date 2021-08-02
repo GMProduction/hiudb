@@ -145,7 +145,7 @@
                             <input id="id" name="id_event" hidden>
                             <div class="mb-3">
                                 <label for="formFile" class="form-label">Payment Slip</label>
-                                <input class="form-control" type="file" name="payment" id="formFile" required>
+                                <input class="form-control" type="file" accept="image/*" name="payment" id="formFile" required>
                             </div>
 
 

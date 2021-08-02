@@ -3,8 +3,10 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\ComiteeController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\homeController;
+use App\Http\Controllers\MemberController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,12 +56,7 @@ Route::get(
 
 
 Route::prefix('/admin')->group(function () {
-    Route::get(
-        '/',
-        function () {
-            return view('admin/dashboard');
-        }
-    );
+    Route::get('/',[DashboardController::class, 'index']);
 
     Route::prefix('/event')->group(
         function () {
@@ -73,9 +70,7 @@ Route::prefix('/admin')->group(function () {
     Route::get('/comitee', [ComiteeController::class, 'index']);
     Route::post('/comitee', [ComiteeController::class, 'index']);
 
-    Route::get('/member', function () {
-        return view('admin/member/member');
-    });
+    Route::get('/member', [MemberController::class,'index']);
 
 });
 

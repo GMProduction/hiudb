@@ -250,36 +250,38 @@
                                     <hr>
                                     <div class="mb-3">
                                         <label class="form-label">Nama</label>
-                                        <p class="fw-bold" id="name">Erfin Aditya</p>
+                                        <p class="fw-bold" id="name"></p>
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">Negara</label>
-                                        <p class="fw-bold" id="country">Indonesia</p>
+                                        <p class="fw-bold" id="country"></p>
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">Institusi</label>
-                                        <p class="fw-bold" id="institute">UDB</p>
+                                        <p class="fw-bold" id="institute"></p>
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">Email</label>
-                                        <p class="fw-bold" id="email">erfin@gmail.com</p>
+                                        <p class="fw-bold" id="email"></p>
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">Alamat</label>
-                                        <p class="fw-bold" id="address">Sukoharjo Kota</p>
+                                        <p class="fw-bold" id="address"></p>
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">Tanggal Lahir</label>
-                                        <p class="fw-bold" id="dob">12 Januari 2012</p>
+                                        <p class="fw-bold" id="dob"></p>
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">Paspor</label>
+                                        <p class="fw-bold" id="passport_number"></p>
+
                                         <a class="d-block" id="passport" style="cursor: pointer" target="_blank"
                                            href="https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1555064738/mpnomhxtbuxt318u4gu1.jpg">
                                             <img src="https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1555064738/mpnomhxtbuxt318u4gu1.jpg"
@@ -373,28 +375,28 @@
                 <div class="modal-body">
                     <form id="formTambahEvent" method="post" enctype="multipart/form-data">
                     @csrf
-                        <input id="id" name="id">
+                        <input id="id" name="id" hidden>
                         <div class="row">
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label for="namaEvent" class="form-label">Nama Event</label>
-                                    <input type="text" class="form-control" id="event_name" name="event_name">
+                                    <input type="text" class="form-control" id="event_name" name="event_name" required>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="mulaiEvent" class="form-label">Mulai Event</label>
-                                    <input type="date" class="form-control" id="start_date" name="start_date">
+                                    <input type="date" class="form-control" id="start_date" name="start_date" required>
                                 </div>
 
 
                                 <div class="mb-3">
                                     <label for="akhirEvent" class="form-label">Akhir Event</label>
-                                    <input type="date" class="form-control" id="end_date" name="end_date">
+                                    <input type="date" class="form-control" id="end_date" name="end_date" required>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="lokasiEvent" class="form-label">Lokasi</label>
-                                    <input type="text" class="form-control" id="event_location" name="event_location">
+                                    <input type="text" class="form-control" id="event_location" name="event_location" required>
                                 </div>
 
                                 <div class="mb-3">
@@ -409,7 +411,7 @@
 
                                 <div class="mb-3">
                                     <label for="deskripsiEvent" class="form-label">Deskripsi</label>
-                                    <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                                    <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
                                 </div>
 
                             </div>
@@ -418,23 +420,23 @@
 
                                 <div class="mb-3">
                                     <label for="mulaiPendaftaranEvent" class="form-label">Mulai Pendaftaran</label>
-                                    <input type="date" class="form-control" id="start_register_date" name="start_register_date">
+                                    <input type="date" class="form-control" id="start_register_date" name="start_register_date" required>
                                 </div>
 
 
                                 <div class="mb-3">
                                     <label for="akhirPendaftaranEvent" class="form-label">Akhir Pendaftaran</label>
-                                    <input type="date" class="form-control" id="end_register_date" name="end_register_date">
+                                    <input type="date" class="form-control" id="end_register_date" name="end_register_date" required>
                                 </div>
 
 
                                 <div class="mb-3">
                                     <label for="kuotaEvent" class="form-label">Kuota</label>
-                                    <input type="text" class="form-control" id="quota" name="quota">
+                                    <input type="text" class="form-control" id="quota" name="quota" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="kuotaEvent" class="form-label">Cover</label>
-                                    <input type="file" class="form-control" id="url_cover" name="url_cover">
+                                    <input type="file" class="form-control" accept="image/*" id="url_cover" name="url_cover" required>
                                     <a class="d-block mt-2" id="imgcover" style="cursor: pointer" target="_blank"
                                        href="">
                                         <img src=""
@@ -444,7 +446,7 @@
                                 </div>
 
                                 <a>Pilih Comitee</a>
-                                <select class="form-select" aria-label="Default select example" name="id_comitee" id="id_comitee">
+                                <select class="form-select" aria-label="Default select example" name="id_comitee" id="id_comitee" required>
                                     <option selected>Pilih Comitee</option>
                                     @foreach($comitee as $com)
                                         <option value="{{$com->id}}">{{$com->name}}</option>
@@ -483,7 +485,15 @@
         })
 
         $(document).on('click', '#addData', async function () {
-            $('#formTambahEvent input').val('');
+            $('#formTambahEvent #event_name').val('');
+            $('#formTambahEvent #start_date').val('');
+            $('#formTambahEvent #end_date').val('');
+            $('#formTambahEvent #event_location').val('');
+            $('#formTambahEvent #latitude').val('');
+            $('#formTambahEvent #longitude').val('');
+            $('#formTambahEvent #start_register_date').val('');
+            $('#formTambahEvent #end_register_date').val('');
+            $('#formTambahEvent #quota').val('');
             $('#formTambahEvent textarea').val('');
             $('#formTambahEvent select').val('');
             $('#formTambahEvent #imgcover').addClass('d-none');
@@ -546,7 +556,7 @@
                             '<td>' + member['get_user']['email'] + '</td>' +
                             '<td>' + member['phone'] + '</td>' +
                             '<td>' + status + '</td>' +
-                            '<td><a type="button" class="btn btn-primary btn-sm" data-reason="'+value['reason_of_reject']+'"  data-event-id="' + id + '" data-status="' + value['status'] + '" id="detailDataParticipant" data-remaining="' + data['remaining'] + '" data-event-name="' + data['event_name'] + '"  data-passport="' + member['url_passport'] + '" data-payment="' + value['url_payment'] + '" ' +
+                            '<td><a type="button" class="btn btn-primary btn-sm" data-passport-number="'+member['passport']+'" data-reason="'+value['reason_of_reject']+'"  data-event-id="' + id + '" data-status="' + value['status'] + '" id="detailDataParticipant" data-remaining="' + data['remaining'] + '" data-event-name="' + data['event_name'] + '"  data-passport="' + member['url_passport'] + '" data-payment="' + value['url_payment'] + '" ' +
                             'data-country="' + member['country'] + '" data-email="' + member['get_user']['email'] + '" data-dob="' + member['dob'] + '" data-address="' + member['address'] + '" data-institute="' + member['institute'] + '" data-name="' + member['name'] + '" data-id="' + value['id'] + '">Detail</a></td>' +
                             '</tr>';
                         tabel.append(row);
@@ -646,6 +656,7 @@
             var remaining = $(this).data('remaining');
             var status = $(this).data('status');
             var reason = $(this).data('reason');
+            var passportNumber = $(this).data('passport-number');
             var textSt = status === 2 ? 'Ditolak' : status === 1 ? 'Diterima' : 'Menunggu';
             eventId = $(this).data('event-id');
             participantId = $(this).data('id');
@@ -660,6 +671,7 @@
 
             }
             $('#detail-participant #txtStatus').html(textSt);
+            $('#detail-participant #passport_number').html(passportNumber);
             $('#detail-participant #txtAlasan').html(reason);
             $('#detail-participant #name_event').html(eventName);
             $('#detail-participant #remaining').html(remaining);
