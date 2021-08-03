@@ -39,7 +39,7 @@ class ComiteeController extends CustomController
                 if ($cekEmail) {
                     return response()->json(
                         [
-                            "msg" => "The username has already been taken.",
+                            "msg" => "The email has already been taken.",
                         ],
                         '201'
                     );

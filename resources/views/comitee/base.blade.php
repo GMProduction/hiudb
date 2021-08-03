@@ -38,7 +38,7 @@
             </a>
 
 
-            
+
             <a href="/comitee">
                 <li href="#" class="nav-link t-white">
                     <i class="bx bxs-dashboard"></i>
@@ -46,9 +46,9 @@
                 </li>
             </a>
 
-           
 
-{{-- 
+
+{{--
             <a href="/user/profile">
                 <li href="#" class="nav-link t-white">
                     <i class="bx bxs-happy-beaming"></i>
@@ -90,6 +90,8 @@
     <script src="{{ asset('js/myStyle.js') }}"></script>
     <script src="{{ asset('js/sidebar.js') }}"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="{{ asset('js/moment.js') }}"></script>
+
     @yield('script')
 </body>
 

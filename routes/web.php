@@ -3,10 +3,15 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\ComiteeController;
+use App\Http\Controllers\DashboardComiteeController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\MemberController;
+use App\Http\Middleware\Admin;
+use App\Http\Middleware\Comitee;
+use App\Http\Middleware\Member;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,15 +52,9 @@ Route::get(
 );
 Route::post('/register-page', [AuthController::class, 'registerMember']);
 
-Route::get(
-    '/user',
-    function () {
-        return view('user/dashboard');
-    }
-);
 
 
-Route::prefix('/admin')->group(function () {
+Route::prefix('/admin')->middleware(Admin::class)->group(function () {
     Route::get('/',[DashboardController::class, 'index']);
 
     Route::prefix('/event')->group(
@@ -67,6 +66,7 @@ Route::prefix('/admin')->group(function () {
         }
     );
 
+
     Route::get('/comitee', [ComiteeController::class, 'index']);
     Route::post('/comitee', [ComiteeController::class, 'index']);
 
@@ -75,11 +75,21 @@ Route::prefix('/admin')->group(function () {
 });
 
 
-
-Route::get('/user/profile', function () {
-    return view('user/profil');
+Route::prefix('/user')->middleware(Member::class)->group(function (){
+    Route::get('/',[DashboardUserController::class,'index']);
+    Route::post('/profile/account',[DashboardUserController::class,'editAccount']);
+    Route::match(['post','get'],'/profile',[DashboardUserController::class,'profile']);
 
 });
+
+Route::prefix('/comitee')->middleware(Comitee::class)->group(function (){
+    Route::get('/',[DashboardComiteeController::class,'index']);
+    Route::get('/event/{id}',[DashboardComiteeController::class,'getParticipant']);
+    Route::post('/event/report/{id}',[DashboardComiteeController::class,'reportEvent']);
+
+});
+
+
 
 
 

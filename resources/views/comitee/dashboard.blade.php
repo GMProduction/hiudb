@@ -17,63 +17,59 @@
 
         <table class="table table-striped table-bordered ">
             <thead>
-                <th>
-                    #
-                </th>
-                <th>
-                    Nama Event
-                </th>
-                <th>
-                    Mulai
-                </th>
-                <th>
-                    Selesai
-                </th>
+            <th>
+                #
+            </th>
+            <th>
+                Nama Event
+            </th>
+            <th>
+                Mulai
+            </th>
+            <th>
+                Selesai
+            </th>
 
-                <th>
-                    Lokasi
-                </th>
+            <th>
+                Lokasi
+            </th>
+            <th>
+                Sisa Kuota
+            </th>
 
-
-
-                <th>
-                    Sisa Kuota
-                </th>
-
-                <th>
-                    Action
-                </th>
+            <th>
+                Action
+            </th>
 
             </thead>
+            @forelse($event as $key => $e)
+                <tr>
+                    <td>
+                        {{$key + 1}}
+                    </td>
+                    <td>
+                        {{$e->event_name}}
+                    </td>
+                    <td>
+                        {{date('d F Y', strtotime($e->start_date))}}
+                    </td>
+                    <td>
+                        {{date('d F Y', strtotime($e->end_date))}}
+                    </td>
+                    <td>
+                        {{$e->event_location}}
+                    </td>
+                    <td>
+                        {{$e->remaining}}
+                    </td>
+                    <td>
+                        <a type="button" class="btn btn-primary btn-sm" data-id="{{$e->id}}" id="detailData">Detail
+                        </a>
 
-            <tr>
-                <td>
-                    1
-                </td>
-                <td>
-                    Dubafest
-                </td>
-                <td>
-                    17 Agustus 2021
-                </td>
-                <td>
-                    19 Agustus 2021
-                </td>
-                <td>
-                    Surakarta
-                </td>
-
-                <td>
-                    200
-                </td>
-
-                <td>
-                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#detail">Detail</button>
-
-                </td>
-            </tr>
-
+                    </td>
+                </tr>
+            @empty
+            @endforelse
 
         </table>
 
@@ -96,21 +92,21 @@
 
                                     <div class="col-4">
                                         <div class="mb-3">
-                                            <label class="form-label">Paspor</label>
-                                            <a class="d-block" style="cursor: pointer" target="_blank"
-                                                href="https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1555064738/mpnomhxtbuxt318u4gu1.jpg">
+                                            <label class="form-label">Cover</label>
+                                            <a class="d-block" id="cover" style="cursor: pointer" target="_blank"
+                                               href="https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1555064738/mpnomhxtbuxt318u4gu1.jpg">
                                                 <img src="https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1555064738/mpnomhxtbuxt318u4gu1.jpg"
-                                                    style="height: 150px; width: 200px; object-fit: cover" />
+                                                     style="height: 150px; width: 200px; object-fit: cover"/>
 
                                             </a>
                                         </div>
 
                                         <div class="mb-3">
                                             <label class="form-label">Map</label>
-                                            <a class="d-block" style="cursor: pointer" target="_blank"
-                                                href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.9920584448178!2d110.81791511530605!3d-7.57584207693839!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a1664d786aa4b%3A0xe2291734e194937c!2sJl.%20Gatot%20Subroto%20158-154%2C%20Jayengan%2C%20Kec.%20Serengan%2C%20Kota%20Surakarta%2C%20Jawa%20Tengah%2057152!5e0!3m2!1sen!2sid!4v1627715326856!5m2!1sen!2sid">
+                                            <a id="targetMap" class="d-block" style="cursor: pointer" target="_blank"
+                                               href="">
                                                 <iframe
-                                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.9920584448178!2d110.81791511530605!3d-7.57584207693839!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a1664d786aa4b%3A0xe2291734e194937c!2sJl.%20Gatot%20Subroto%20158-154%2C%20Jayengan%2C%20Kec.%20Serengan%2C%20Kota%20Surakarta%2C%20Jawa%20Tengah%2057152!5e0!3m2!1sen!2sid!4v1627715326856!5m2!1sen!2sid"
+                                                    src=""
                                                     width="200" height="150" style="border:0;" allowfullscreen=""
                                                     loading="lazy"></iframe>
 
@@ -120,22 +116,22 @@
                                     <div class="col-4">
                                         <div class="mb-3">
                                             <label class="form-label">Nama Event</label>
-                                            <p class="fw-bold">DubaFest</p>
+                                            <p class="fw-bold" id="name_event"></p>
                                         </div>
 
                                         <div class="mb-3">
                                             <label class="form-label">Mulai</label>
-                                            <p class="fw-bold">17 Agustus 2021</p>
+                                            <p class="fw-bold" id="start_date"></p>
                                         </div>
 
                                         <div class="mb-3">
                                             <label class="form-label">Selesai</label>
-                                            <p class="fw-bold">19 Agustus 2021</p>
+                                            <p class="fw-bold" id="end_date"></p>
                                         </div>
 
                                         <div class="mb-3">
                                             <label class="form-label">Lokasi</label>
-                                            <p class="fw-bold">Solo</p>
+                                            <p class="fw-bold" id="location"></p>
                                         </div>
 
 
@@ -143,24 +139,25 @@
 
                                     <div class="col-4">
 
-
                                         <div class="mb-3">
                                             <label class="form-label">Mulai Pendaftaran</label>
-                                            <p class="fw-bold">10 Agustus 2021</p>
+                                            <p class="fw-bold" id="start_register"></p>
                                         </div>
 
                                         <div class="mb-3">
                                             <label class="form-label">Ahkir Pendaftaran</label>
-                                            <p class="fw-bold">16 Agustus 2021</p>
+                                            <p class="fw-bold" id="end_register"></p>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Kuota</label>
+                                            <p class="fw-bold" id="quota"></p>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Sisa Kuota</label>
-                                            <p class="fw-bold">512</p>
+                                            <p class="fw-bold" id="remaining"></p>
                                         </div>
-
                                         <div class="mb-3">
-                                            <a type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#laporan">Buat Laporan</a>
+                                            <a class="btn btn-primary" id="report">Report Event</a>
                                         </div>
                                     </div>
 
@@ -171,8 +168,9 @@
                                 <p>Partisipan</p>
                                 <hr>
 
-                                <table class="table table-striped table-bordered ">
-                                    <thead>
+                                <div id="divTabel" style="" class="overflow-auto">
+                                    <table class="table table-striped table-bordered ">
+                                        <thead>
                                         <th>
                                             #
                                         </th>
@@ -182,10 +180,6 @@
                                         <th>
                                             Negara
                                         </th>
-                                        <th>
-                                            Nama Event
-                                        </th>
-
                                         <th>
                                             Institusi
                                         </th>
@@ -197,47 +191,18 @@
                                         <th>
                                             Phone
                                         </th>
-
                                         <th>
-                                            Status Pembayaran
+                                            Status
                                         </th>
 
 
+                                        </thead>
+                                        <tbody id="tabel_participant">
 
-                                    </thead>
+                                        </tbody>
 
-                                    <tr>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>
-                                            Erfin Aditya
-                                        </td>
-                                        <td>
-                                            Indonesia
-                                        </td>
-                                        <td>
-                                            Dubafest
-                                        </td>
-                                        <td>
-                                            Stanford
-                                        </td>
-                                        <td>
-                                            erfin@gmail.com
-                                        </td>
-                                        <td>
-                                            089218319283
-                                        </td>
-
-                                        <td>
-                                            Menunggu
-                                        </td>
-
-
-                                    </tr>
-
-
-                                </table>
+                                    </table>
+                                </div>
 
                             </div>
                         </form>
@@ -256,9 +221,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
-                            <div id="summernote"></div>
-                            <button type="submit" class="btn-primary mt-3 p-2" >Publish</button>
+                        <form id="fromReportEvent" onsubmit="return reportEvent()">
+                            @csrf
+                            <input id="id_report" name="id_report" hidden>
+                            <textarea id="summernote" name="information"></textarea>
+                            <button type="submit" class="btn-primary mt-3 p-2">Publish</button>
                         </form>
                     </div>
 
@@ -274,11 +241,126 @@
 
 @section('script')
 
-<script src="{{ asset('summernote/summernote.min.js') }}"></script>
-<script>
-    $(document).ready(function() {
-        $('#summernote').summernote();
-    });
-</script>
+    <script src="{{ asset('summernote/summernote.min.js') }}"></script>
+    <script>
+        var id_event, information, id_report;
+        $(document).ready(function () {
+            // $('#summernote').summernote();
+        });
+
+        $(document).on('click', '#detailData', async function () {
+            var id = $(this).data('id');
+            await getDetailEvent(id);
+            $('#detail').modal('show')
+        })
+
+        $(document).on('click', '#report', async function () {
+            $("#summernote").summernote("code", information);
+            $('#laporan #id_report').val(id_report);
+            $('#laporan').modal('show')
+        })
+
+        function reportEvent(){
+            var form_data = new FormData($('#fromReportEvent')[0]);
+
+            swal({
+                title: "Edit Account",
+                text: "Are you sure ?",
+                icon: "info",
+                buttons: true,
+                primariMode: true,
+            })
+                .then((res) => {
+                    if (res) {
+                        $.ajax({
+                            type: "POST",
+                            url: '/comitee/event/report/'+id_event,
+                            data: form_data,
+                            async: true,
+                            processData: false,
+                            contentType: false,
+                            headers: {
+                                'Accept': "application/json"
+                            },
+                            success: function (data, textStatus, xhr) {
+                                console.log(data);
+
+                                if (xhr.status === 200) {
+                                    swal("Profile Updated ", {
+                                        icon: "success",
+                                    }).then((dat) => {
+                                        // window.location.reload();
+                                    });
+                                } else {
+                                    swal(data['msg'])
+                                }
+                                console.log(data);
+                            },
+                            complete: function (xhr, textStatus) {
+                                console.log(xhr.status);
+                                console.log(textStatus);
+                            },
+                            error: function (error, xhr, textStatus) {
+                                // console.log("LOG ERROR", error.responseJSON.errors);
+                                // console.log("LOG ERROR", error.responseJSON.errors[Object.keys(error.responseJSON.errors)[0]][0]);
+                                console.log(xhr.status);
+                                console.log(textStatus);
+                                console.log(error.responseJSON);
+                                swal(error.responseJSON.errors[Object.keys(error.responseJSON.errors)[0]][0])
+                            }
+                        })
+                    }
+                });
+            return false
+        }
+
+        async function getDetailEvent(id) {
+            await $.get('/comitee/event/' + id, function (data) {
+                $('#detail #name_event').html(data['event_name']);
+                $('#detail #start_date').html(moment(data['start_date']).format('DD MMMM YYYY'));
+                $('#detail #end_date').html(moment(data['end_date']).format('DD MMMM YYYY'));
+                $('#detail #location').html(data['event_location']);
+                $('#detail #remaining').html(data['remaining']);
+                $('#detail #quota').html(data['quota']);
+                $('#detail #start_register').html(moment(data['start_register_date']).format('DD MMMM YYYY'));
+                $('#detail #end_register').html(moment(data['end_register_date']).format('DD MMMM YYYY'));
+                $('#detail #cover').attr('href', data['url_cover']);
+                $('#detail #cover img').attr('src', data['url_cover'])
+                var tabel = $('#tabel_participant');
+                id_event = data['id'];
+                id_report = undefined;
+                information = '';
+                if (data['get_report']){
+                    id_report = data['get_report']['id'];
+                    information = data['get_report']['information'];
+                }
+                tabel.empty();
+                $('#divTabel').removeClass('h400');
+                $('#targetMap').attr('href', 'https://maps.google.com/maps?q=' + data['latitude'] + ',' + data['longitude'] + '&z=15&output=embed')
+                $('#targetMap iframe').attr('src', 'https://maps.google.com/maps?q=' + data['latitude'] + ',' + data['longitude'] + '&z=15&output=embed')
+                if (data['get_participant'].length > 0) {
+                    $.each(data['get_participant'], function (key, value) {
+                        $('#divTabel').addClass('h400');
+                        var member = value['get_member'];
+                        var status = value['status'] === 0 ? 'Menunggu' : value['status'] === 1 ? 'Diterima' : 'Ditolak';
+                        var row = '<tr>' +
+                            '<td>' + parseInt(key + 1) + '</td>' +
+                            '<td>' + member['name'] + '</td>' +
+                            '<td>' + member['country'] + '</td>' +
+                            '<td>' + member['institute'] + '</td>' +
+                            '<td>' + member['get_user']['email'] + '</td>' +
+                            '<td>' + member['phone'] + '</td>' +
+                            '<td>' + status + '</td>' +
+                            '</tr>';
+                        tabel.append(row);
+
+                    })
+                } else {
+                    var row = '<tr><td colspan="8" class="text-center">Tidak ada pendaftar</td></tr>'
+                    tabel.append(row);
+                }
+            })
+        }
+    </script>
 
 @endsection

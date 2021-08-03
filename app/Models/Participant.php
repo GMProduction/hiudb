@@ -23,4 +23,11 @@ class Participant extends Model
     public function getMember(){
         return $this->belongsTo(Member::class,'id_member');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function getEvent(){
+        return $this->belongsTo(Event::class,'id_event');
+    }
 }

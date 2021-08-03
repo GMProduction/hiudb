@@ -37,4 +37,11 @@ class Event extends Model
     public function getParticipant(){
         return $this->hasMany(Participant::class,'id_event')->orderBy('status','ASC');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function getReport(){
+        return $this->hasOne(ReportEvent::class,'id_event');
+    }
 }

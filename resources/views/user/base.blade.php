@@ -21,9 +21,11 @@
     <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}" type="text/css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet" />
-    <!-- custom css -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
 
+    <!-- custom css -->
     <script src="{{ asset('js/swal.js') }}"></script>
+
 
 </head>
 
@@ -36,7 +38,7 @@
             </a>
 
 
-            
+
             <a href="/user">
                 <li href="#" class="nav-link t-white">
                     <i class="bx bxs-dashboard"></i>
@@ -44,7 +46,7 @@
                 </li>
             </a>
 
-           
+
 
 
             <a href="/user/profile">
@@ -88,6 +90,9 @@
     <script src="{{ asset('js/myStyle.js') }}"></script>
     <script src="{{ asset('js/sidebar.js') }}"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="{{ asset('js/moment.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     @yield('script')
 </body>
 

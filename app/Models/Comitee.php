@@ -13,4 +13,8 @@ class Comitee extends Model
         'phone',
         'id_user'
     ];
+
+    public function getEvent(){
+        return $this->hasMany(Event::class,'id_comitee');
+    }
 }

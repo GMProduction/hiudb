@@ -28,4 +28,11 @@ class Member extends Model
     public function getUser(){
         return $this->belongsTo(User::class,'id_user');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function getParticipant(){
+        return $this->hasMany(Participant::class, 'id_member');
+    }
 }

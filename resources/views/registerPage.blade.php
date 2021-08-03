@@ -107,7 +107,7 @@
                                 </div>
 
                                 <div class="mt-3 mb-2">
-                                    <label for="passport" class="form-label">No. Passport</label>
+                                    <label for="passport" class="form-label">Passport Number</label>
                                     <input  type="text" class="form-control" id="passport" name="passport">
                                 </div>
                                 <div class="mt-3 mb-2">

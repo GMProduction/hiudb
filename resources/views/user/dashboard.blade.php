@@ -13,59 +13,65 @@
 
             <table class="table table-striped table-bordered ">
                 <thead>
-                    <th>
-                        #
-                    </th>
-                    <th>
-                        Event Name
-                    </th>
-                    <th>
-                        Date
-                    </th>
-                    <th>
-                        Payment Slip
-                    </th>
+                <th>
+                    #
+                </th>
+                <th>
+                    Event Name
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Payment Slip
+                </th>
 
-                    <th>
-                        Action
-                    </th>
+                <th>
+                    Action
+                </th>
 
                 </thead>
-
-                <tr>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        Dubafest
-                    </td>
-                    <td>
-                        21 August 2021 - 24 August 2021
-                    </td>
-                    <td>
-                        @php($status = 'waiting')
-                        <span @if ($status = 'waiting') class="t-orange"
-                            @elseif($status = "accepted")
-                                        class="t-green"
+                @forelse($user->getMember->getParticipant as $key => $u)
+                    <tr>
+                        <td>
+                            {{$key + 1}}
+                        </td>
+                        <td>
+                            {{$u->getEvent->event_name}}
+                        </td>
+                        <td>
+                            {{date('d M Y', strtotime($u->getEvent->start_date))}} - {{date('d M Y', strtotime($u->getEvent->end_date))}}
+                        </td>
+                        <td>
+                            <span
+                            @if($u->status == 0)
+                            class="t-orange" >
+                                Waiting
+                            @elseif($u->status == 1)
+                            class="t-green" >
+                                Accepted
                             @else
-                                        class="t-red" @endif>
+                            class="t-red" >
+                                Rejected
+                            @endif
+                           </span>
 
-                            Waiting
                         </span>
-                    </td>
+                        </td>
 
 
-                    <td>
-                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                            data-bs-target="#detail-participant">Detail</button>
-                    </td>
-                </tr>
-
+                        <td>
+                            <a type="button" class="btn btn-primary btn-sm" id="detailData" data-payment="{{$u->url_payment}}" data-status="{{$u->status}}" data-location="{{$u->getEvent->event_location}}" data-end="{{$u->getEvent->end_date}}" data-start="{{$u->getEvent->start_date}}" data-event-name="{{$u->getEvent->event_name}}" data-cover="{{$u->getEvent->url_cover}}">Detail
+                            </a>
+                        </td>
+                    </tr>
+                @empty
+                @endforelse
             </table>
 
             <!-- Modal detail participant-->
-            <div class="modal  fade" id="detail-participant" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
+            <div class="modal  fade" id="detail" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -75,8 +81,8 @@
                         <div class="modal-body">
                             <form>
 
-                                <img src="https://image.freepik.com/free-vector/music-event-poster-template-with-abstract-shapes_1361-1316.jpg"
-                                    width="100%" height="300px" style="object-fit: cover" />
+                                <img id="cover" src=""
+                                     width="100%" height="300px" style="object-fit: cover"/>
                                 <div class="box-border mt-4">
                                     <div class="row">
 
@@ -85,47 +91,43 @@
 
                                             <div class="mb-3">
                                                 <label class="form-label">Event Name</label>
-                                                <p class="fw-bold">Dubafest</p>
+                                                <p class="fw-bold" id="event_name"></p>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label">Start Date</label>
-                                                <p class="fw-bold">17 Agustus 2021</p>
+                                                <p class="fw-bold" id="start"></p>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label">End Date</label>
-                                                <p class="fw-bold">19 Agustus 2021</p>
+                                                <p class="fw-bold" id="end"></p>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label">Location</label>
-                                                <p class="fw-bold">Solo</p>
+                                                <p class="fw-bold" id="location"></p>
                                             </div>
-
-
                                         </div>
 
                                         <div class="col-6">
-
-
                                             <div class="mb-3">
                                                 <label class="form-label mb-0">Payment Slip</label>
-                                                <label class="form-label d-block" style="font-size: 0.8rem">(waiting for admin confirmation)</label>
-                                                <a class="d-block" style="cursor: pointer" target="_blank"
-                                                    href="https://1.bp.blogspot.com/-MOHGve9IHeQ/XHvEjRpgyhI/AAAAAAAAIyQ/06yF5OyDDHQEwAqbc9SnzW7Sq0rx_RMdwCLcBGAs/s1600/IMG_20181120_064248_565.jpg">
-                                                    <img src="https://1.bp.blogspot.com/-MOHGve9IHeQ/XHvEjRpgyhI/AAAAAAAAIyQ/06yF5OyDDHQEwAqbc9SnzW7Sq0rx_RMdwCLcBGAs/s1600/IMG_20181120_064248_565.jpg"
-                                                        style="height: 50px; width: 100px; object-fit: cover" />
+                                                <label class="form-label d-block" style="font-size: 0.8rem" id="status">(waiting for admin confirmation)</label>
+                                                <a id="payment" class="d-block" style="cursor: pointer" target="_blank"
+                                                   href="">
+                                                    <img src=""
+                                                         style="height: 50px; width: 100px; object-fit: cover"/>
 
                                                 </a>
                                             </div>
 
                                             <div class="mb-4"></div>
-                                            <a class="btn btn-success" href="https://wa.me/62912391872">Kontak Admin</a>
+                                            <a class="btn btn-success" target="_blank" href="https://wa.me/62912391872">Kontak Admin</a>
 
                                         </div>
                                     </div>
-
+                                </div>
                             </form>
                         </div>
 
@@ -141,6 +143,17 @@
 @endsection
 
 @section('script')
-
+<script>
+    $(document).on('click', '#detailData', function () {
+        $('#detail #cover').attr('src',$(this).data('cover'));
+        $('#detail #payment').attr('href',$(this).data('payment'));
+        $('#detail #payment img').attr('src',$(this).data('payment'));
+        $('#detail #event_name').html($(this).data('event-name'));
+        $('#detail #start').html(moment($(this).data('start')).format('DD MMMM YYYY'));
+        $('#detail #end').html(moment($(this).data('end')).format('DD MMMM YYYY'));
+        $('#detail #location').html($(this).data('location'));
+        $('#detail').modal('show')
+    })
+</script>
 
 @endsection

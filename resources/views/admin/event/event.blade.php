@@ -59,10 +59,10 @@
                             {{$e->event_name}}
                         </td>
                         <td>
-                            {{date('d-m-Y', strtotime($e->start_date))}}
+                            {{date('d F Y', strtotime($e->start_date))}}
                         </td>
                         <td>
-                            {{date('d-m-Y', strtotime($e->end_date))}}
+                            {{date('d F Y', strtotime($e->end_date))}}
                         </td>
                         <td>
                             {{$e->event_location}}
