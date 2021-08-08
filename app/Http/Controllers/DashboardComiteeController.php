@@ -15,7 +15,60 @@ class DashboardComiteeController extends CustomController
     //
     public function index()
     {
-//        $event = Comitee::with(['getEvent'])->where('id_user', '=', Auth::id())->first();
+
+        if ($this->request->isMethod('POST')){
+            $comite = Comitee::where('id_user','=',Auth::id())->first();
+            if ($this->request->get('id')){
+                $event = Event::find($this->request->get('id'));
+                $dataSave = [
+                    'event_name' => $this->request->get('event_name'),
+                    'start_date' => $this->request->get('start_date'),
+                    'end_date' => $this->request->get('end_date'),
+                    'event_location' => $this->request->get('event_location'),
+                    'latitude' => $this->request->get('latitude'),
+                    'longitude' => $this->request->get('longitude'),
+                    'description' => $this->request->get('description'),
+                    'start_register_date' => $this->request->get('start_register_date'),
+                    'end_register_date' => $this->request->get('end_register_date'),
+                    'quota' => $this->request->get('quota'),
+                    'id_comitee' => $comite->id
+
+                ];
+                $imageFile = $this->request->files->get('url_gambar');
+                if($imageFile || $imageFile != ''){
+                    if ($event->url_cover){
+                        if (file_exists('../public'.$event->url_cover)) {
+                            unlink('../public'.$event->url_cover);
+                        }
+                    }
+                    $image = $this->generateImageName('url_cover');
+                    $stringImg = '/images/event/'.$image;
+                    $this->uploadImage('url_cover', $image, 'imageEvent');
+                    $dataSave = Arr::add($dataSave, 'url_cover', $stringImg);
+                }
+                $event->update($dataSave);
+
+            }else{
+                $image = $this->generateImageName('url_cover');
+                $stringImg = '/images/event/'.$image;
+                $this->uploadImage('url_cover', $image, 'imageEvent');
+                Event::create([
+                    'event_name' => $this->request->get('event_name'),
+                    'start_date' => $this->request->get('start_date'),
+                    'end_date' => $this->request->get('end_date'),
+                    'event_location' => $this->request->get('event_location'),
+                    'latitude' => $this->request->get('latitude'),
+                    'longitude' => $this->request->get('longitude'),
+                    'description' => $this->request->get('description'),
+                    'start_register_date' => $this->request->get('start_register_date'),
+                    'end_register_date' => $this->request->get('end_register_date'),
+                    'quota' => $this->request->get('quota'),
+                    'url_cover' => $stringImg,
+                    'id_comitee' => $comite->id,
+                ]);
+            }
+            return redirect('/comitee');
+        }
         $event = Event::with('getComitee')->whereHas(
             'getComitee',
             function ($query) {

@@ -10,10 +10,20 @@
 
 <section class="m-2">
 
-
+    <style>
+        .h400 {
+            height: 400px;
+        }
+    </style>
     <div class="table-container">
 
-        <h5 class="mb-3">Events</h5>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-3">Event</h5>
+
+            <button type="button ms-auto" class="btn btn-primary btn-sm" id="addData">Tambah Event
+            </button>
+
+        </div>
 
         <table class="table table-striped table-bordered ">
             <thead>
@@ -64,6 +74,8 @@
                     </td>
                     <td>
                         <a type="button" class="btn btn-primary btn-sm" data-id="{{$e->id}}" id="detailData">Detail
+                        </a>
+                        <a type="button" class="btn btn-success btn-sm" data-id="{{$e->id}}" id="editData">Edit
                         </a>
 
                     </td>
@@ -234,6 +246,99 @@
         </div>
     </div>
 
+    <div class="modal  fade" id="tambahevent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Event</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formTambahEvent" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <input id="id" name="id" hidden>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="namaEvent" class="form-label">Nama Event</label>
+                                    <input type="text" class="form-control" id="event_name" name="event_name" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="mulaiEvent" class="form-label">Mulai Event</label>
+                                    <input type="date" class="form-control" id="start_date" name="start_date" required>
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label for="akhirEvent" class="form-label">Akhir Event</label>
+                                    <input type="date" class="form-control" id="end_date" name="end_date" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="lokasiEvent" class="form-label">Lokasi</label>
+                                    <input type="text" class="form-control" id="event_location" name="event_location" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="latitudeEvent" class="form-label">Latitude</label>
+                                    <input type="text" class="form-control" id="latitude" name="latitude">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="LongitudeEvent" class="form-label">Longitude</label>
+                                    <input type="text" class="form-control" id="longitude" name="longitude">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="deskripsiEvent" class="form-label">Deskripsi</label>
+                                    <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                                </div>
+
+                            </div>
+                            <div class="col-6">
+
+
+                                <div class="mb-3">
+                                    <label for="mulaiPendaftaranEvent" class="form-label">Mulai Pendaftaran</label>
+                                    <input type="date" class="form-control" id="start_register_date" name="start_register_date" required>
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label for="akhirPendaftaranEvent" class="form-label">Akhir Pendaftaran</label>
+                                    <input type="date" class="form-control" id="end_register_date" name="end_register_date" required>
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label for="kuotaEvent" class="form-label">Kuota</label>
+                                    <input type="text" class="form-control" id="quota" name="quota" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="kuotaEvent" class="form-label">Cover</label>
+                                    <input type="file" class="form-control" accept="image/*" id="url_cover" name="url_cover">
+                                    <a class="d-block mt-2" id="imgcover" style="cursor: pointer" target="_blank"
+                                       href="">
+                                        <img src=""
+                                             style="height: 150px; width: 200px; object-fit: cover"/>
+
+                                    </a>
+                                </div>
+
+                                <div class="mb-4"></div>
+                                <button type="submit" class="btn btn-primary ms-auto">Simpan</button>
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 </section>
 
 
@@ -361,6 +466,48 @@
                 }
             })
         }
+
+        $(document).on('click', '#addData', async function () {
+            $('#formTambahEvent #event_name').val('');
+            $('#formTambahEvent #start_date').val('');
+            $('#formTambahEvent #end_date').val('');
+            $('#formTambahEvent #event_location').val('');
+            $('#formTambahEvent #latitude').val('');
+            $('#formTambahEvent #longitude').val('');
+            $('#formTambahEvent #start_register_date').val('');
+            $('#formTambahEvent #end_register_date').val('');
+            $('#formTambahEvent #quota').val('');
+            $('#formTambahEvent textarea').val('');
+            $('#formTambahEvent select').val('');
+            $('#formTambahEvent #imgcover').addClass('d-none');
+            $('#formTambahEvent #url_cover').attr('required','');
+
+            $('#tambahevent').modal('show');
+        })
+        $(document).on('click', '#editData', async function () {
+            var id = $(this).data('id');
+            $('#formTambahEvent #id').val(id);
+            $('#formTambahEvent #url_cover').removeAttr('required');
+
+            $.get('/comitee/event/' + id, function (data) {
+                $('#formTambahEvent #event_name').val(data['event_name']);
+                $('#formTambahEvent #start_date').val(data['start_date']);
+                $('#formTambahEvent #end_date').val(data['end_date']);
+                $('#formTambahEvent #event_location').val(data['event_location']);
+                $('#formTambahEvent #latitude').val(data['latitude']);
+                $('#formTambahEvent #longitude').val(data['longitude']);
+                $('#formTambahEvent #start_register_date').val(data['start_register_date']);
+                $('#formTambahEvent #end_register_date').val(data['end_register_date']);
+                $('#formTambahEvent #quota').val(data['quota']);
+                $('#formTambahEvent textarea').val(data['description']);
+                $('#formTambahEvent select').val(data['id_comitee']);
+                if(data['url_cover']){
+                    $('#formTambahEvent #imgcover').removeClass('d-none').attr('href',data['url_cover']);
+                    $('#formTambahEvent #imgcover img').attr('src',data['url_cover']);
+                }
+            })
+            $('#tambahevent').modal('show');
+        })
     </script>
 
 @endsection

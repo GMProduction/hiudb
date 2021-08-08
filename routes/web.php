@@ -83,7 +83,7 @@ Route::prefix('/user')->middleware(Member::class)->group(function (){
 });
 
 Route::prefix('/comitee')->middleware(Comitee::class)->group(function (){
-    Route::get('/',[DashboardComiteeController::class,'index']);
+    Route::match(['post','get'],'/',[DashboardComiteeController::class,'index']);
     Route::get('/event/{id}',[DashboardComiteeController::class,'getParticipant']);
     Route::post('/event/report/{id}',[DashboardComiteeController::class,'reportEvent']);
 

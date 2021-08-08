@@ -242,7 +242,6 @@
                 </div>
                 <div class="modal-body">
                     <form>
-
                         <div class="row">
                             <div class="col-6">
                                 <div class="box-border">
@@ -497,11 +496,14 @@
             $('#formTambahEvent textarea').val('');
             $('#formTambahEvent select').val('');
             $('#formTambahEvent #imgcover').addClass('d-none');
+            $('#formTambahEvent #url_cover').attr('required','');
+
             $('#tambahevent').modal('show');
         })
         $(document).on('click', '#editData', async function () {
             var id = $(this).data('id');
             $('#formTambahEvent #id').val(id);
+            $('#formTambahEvent #url_cover').removeAttr('required');
 
             $.get('/admin/event/' + id, function (data) {
                 $('#formTambahEvent #event_name').val(data['event_name']);
