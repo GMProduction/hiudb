@@ -87,7 +87,7 @@
                         <div class="modal-body">
                             <form id="formAdd" method="post" onsubmit="return reegister()">
                                @csrf
-                                <input id="id" name="id">
+                                <input id="id" name="id" type="number">
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Name Lengkap</label>
                                     <input type="text" class="form-control" id="name" name="name">
