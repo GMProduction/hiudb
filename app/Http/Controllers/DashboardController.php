@@ -22,6 +22,7 @@ class DashboardController extends CustomController
             $stok = (int) $event->quota - (int)$sold;
             $event = Arr::add($event, 'remaining', $stok);
         }
+
         return view('admin.dashboard')->with(['event' => $event]);
     }
 }
