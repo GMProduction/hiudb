@@ -34,11 +34,8 @@
     <div class="side-navbar active-nav d-flex justify-content-between  flex-wrap flex-column" id="sidebar">
         <ul class="nav flex-column text-white w-100 h-100">
             <a href="#" class="nav-link h3 text-white my-2">
-               HI UDB
+                {{auth()->user()->getMember->name}}
             </a>
-
-
-
             <a href="/user">
                 <li href="#" class="nav-link t-white">
                     <i class="bx bxs-dashboard"></i>

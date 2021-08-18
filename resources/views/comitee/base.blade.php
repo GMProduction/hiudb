@@ -34,7 +34,7 @@
     <div class="side-navbar active-nav d-flex justify-content-between  flex-wrap flex-column" id="sidebar">
         <ul class="nav flex-column text-white w-100 h-100">
             <a href="#" class="nav-link h3 text-white my-2">
-               HI UDB
+                {{auth()->user()->getComitee->name}}
             </a>
 
 
@@ -80,6 +80,7 @@
         </nav>
         <!--End Top Nav -->
         <div class="content-wrapper bg-light p-2" style="height: 100vh;">
+
             @yield('content')
         </div>
     </div>

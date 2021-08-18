@@ -78,6 +78,9 @@ class AuthController extends CustomController
 
             if (Auth::user()->role === 'admin'){
                 $redirect = '/admin';
+            }elseif (Auth::user()->role === 'comitee'){
+                $redirect = '/comitee';
+
             }
 
             return redirect($redirect);

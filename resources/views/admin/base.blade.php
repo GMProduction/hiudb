@@ -32,7 +32,7 @@
     <div class="side-navbar active-nav d-flex justify-content-between  flex-wrap flex-column" id="sidebar">
         <ul class="nav flex-column text-white w-100 h-100">
             <a href="#" class="nav-link h3 text-white my-2">
-                HI UDB
+                {{auth()->user()->getAdmin->name}}
             </a>
 
 
@@ -102,6 +102,7 @@
     <script src="{{ asset('js/sidebar.js') }}"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="{{ asset('js/moment.js') }}"></script>
+    <script src="{{ asset('js/dialog.js') }}"></script>
 
     @yield('script')
 </body>

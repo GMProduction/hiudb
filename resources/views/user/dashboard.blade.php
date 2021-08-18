@@ -23,7 +23,7 @@
                     Date
                 </th>
                 <th>
-                    Payment Slip
+                    Status
                 </th>
 
                 <th>
@@ -61,7 +61,7 @@
 
 
                         <td>
-                            <a type="button" class="btn btn-primary btn-sm" id="detailData" data-payment="{{$u->url_payment}}" data-status="{{$u->status}}" data-location="{{$u->getEvent->event_location}}" data-end="{{$u->getEvent->end_date}}" data-start="{{$u->getEvent->start_date}}" data-event-name="{{$u->getEvent->event_name}}" data-cover="{{$u->getEvent->url_cover}}">Detail
+                            <a type="button" class="btn btn-primary btn-sm" id="detailData"  data-payment="{{$u->url_payment}}" data-status="{{$u->status}}" data-location="{{$u->getEvent->event_location}}" data-end="{{$u->getEvent->end_date}}" data-start="{{$u->getEvent->start_date}}" data-event-name="{{$u->getEvent->event_name}}" data-cover="{{$u->getEvent->url_cover}}">Detail
                             </a>
                         </td>
                     </tr>
@@ -113,7 +113,7 @@
                                         <div class="col-6">
                                             <div class="mb-3">
                                                 <label class="form-label mb-0">Payment Slip</label>
-                                                <label class="form-label d-block" style="font-size: 0.8rem" id="status">(waiting for admin confirmation)</label>
+                                                <label class="form-label d-block" style="font-size: 0.8rem" id="status"></label>
                                                 <a id="payment" class="d-block" style="cursor: pointer" target="_blank"
                                                    href="">
                                                     <img src=""
@@ -145,10 +145,18 @@
 @section('script')
 <script>
     $(document).on('click', '#detailData', function () {
+        var status = $(this).data('status');
+        var textStatus = '( Waiting for admin confirmation )';
+        if (status === 1){
+            textStatus = '( Accepted )'
+        }else if(status === 2){
+            textStatus = '( Rejected )'
+        }
         $('#detail #cover').attr('src',$(this).data('cover'));
         $('#detail #payment').attr('href',$(this).data('payment'));
         $('#detail #payment img').attr('src',$(this).data('payment'));
         $('#detail #event_name').html($(this).data('event-name'));
+        $('#detail #status').html(textStatus);
         $('#detail #start').html(moment($(this).data('start')).format('DD MMMM YYYY'));
         $('#detail #end').html(moment($(this).data('end')).format('DD MMMM YYYY'));
         $('#detail #location').html($(this).data('location'));

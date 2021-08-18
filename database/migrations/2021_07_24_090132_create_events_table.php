@@ -19,8 +19,6 @@ class CreateEventsTable extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->text('event_location');
-            $table->text('latitude')->nullable(true)->default(null);
-            $table->text('longitude')->nullable(true)->default(null);
             $table->text('description');
             $table->date('start_register_date');
             $table->date('end_register_date');
