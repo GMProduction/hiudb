@@ -398,7 +398,7 @@
                                     <input type="text" class="form-control" id="event_location" name="event_location" required>
                                 </div>
 
-                                <div class="mb-3">
+                                {{-- <div class="mb-3">
                                     <label for="latitudeEvent" class="form-label">Latitude</label>
                                     <input type="text" class="form-control" id="latitude" name="latitude">
                                 </div>
@@ -406,7 +406,7 @@
                                 <div class="mb-3">
                                     <label for="LongitudeEvent" class="form-label">Longitude</label>
                                     <input type="text" class="form-control" id="longitude" name="longitude">
-                                </div>
+                                </div> --}}
 
                                 <div class="mb-3">
                                     <label for="deskripsiEvent" class="form-label">Deskripsi</label>
