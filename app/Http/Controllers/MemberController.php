@@ -22,7 +22,7 @@ class MemberController extends CustomController
     {
 
         $pdf = \App::make('dompdf.wrapper');
-        $pdf->loadHTML($this->dataPendaftaran($request))->setPaper('f4', 'landscape');
+        $pdf->loadHTML($this->dataPendaftaran($request))->setPaper('A5', 'potrait');
         return $pdf->stream();
     }
 

@@ -17,40 +17,52 @@
 
 <body>
 
-<style>
-    footer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 0;
-    }
-</style>
+    <style>
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 0;
+        }
 
-<br>
-<div style="width:100%">
-    <h4 class="text-center">Duta Bangsa University</h4>
-</div>
-<br>
-<br>
+    </style>
 
-<div class="card-body">
- 
+    <br>
+
+    <div style="width:90%; border: 1px solid #111;padding:20px;   margin: 0 auto">
+        <img src="{{ public_path('static-image/logo.png') }}" style="width: 120px; float: left;" />
+
+        <div>
+            <h4 style=" text-align: center;margin-bottom:0;margin-top:0">Duta Bangsa University</h4>
+            <h5 style=" text-align: center;margin-bottom:0;margin-top:0">Nama Event</h5>
+            <h5 style=" text-align: center;margin-bottom:0;margin-top:0">Tanggal Pelaksanaan</h5>
+        </div>
+
+        <hr>
+        <h5 style="margin-bottom:0">PARTICIPANT CARD</h5>
+        <p>Name :</p>
+        <p>Passport :</p>
+        <p>Date Of Birth :</p>
+        <p>Institude :</p>
+        <br>
+
+        
+        <div style="width:200px; margin-left:auto">
+            <p style="text-align: center; margin-bottom:0">Surakarta, tanggal cetak</p>
+            <p style="text-align: center;margin-top:0">Comitee Chairman</p>
+            <br>
+            <p style="text-align: center">Nama Comitee</p>
+        </div>
+    </div>
 
 
 
-<footer class="footer">
-    @php $date = new DateTime("now", new DateTimeZone('Asia/Bangkok') ); @endphp
-    <p class="text-right small mb-0 mt-0 pt-0 pb-0"> di cetak oleh :
-                {{auth()->user()->username}}
-    </p>
-    <p class="text-right small mb-0 mt-0 pt-0 pb-0"> tgl: {{ $date->format('d F Y, H:i:s') }} </p>
-</footer>
 
-<!-- JS -->
-<script src="js/app.js"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+    <!-- JS -->
+    <script src="js/app.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 </body>
 
 </html>

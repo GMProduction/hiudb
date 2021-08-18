@@ -93,3 +93,9 @@ Route::prefix('/comitee')->middleware(Comitee::class)->group(function () {
 
 
 Route::post('/register', [AuthController::class, 'register']);
+Route::get(
+    '/cetak',
+    function () {
+        return view('user/cetakPendaftaran');
+    }
+);
