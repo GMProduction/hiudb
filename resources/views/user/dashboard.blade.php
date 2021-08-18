@@ -123,7 +123,8 @@
                                             </div>
 
                                             <div class="mb-4"></div>
-                                            <a class="btn btn-success" target="_blank" href="https://wa.me/62912391872">Kontak Admin</a>
+                                            <a class="btn btn-success" target="_blank" href="https://wa.me/62912391872">Contact Admin</a>
+                                            <a class="btn btn-warning" href="/user/cetakPendaftaran/{id}">Print Card</a>
 
                                         </div>
                                     </div>
