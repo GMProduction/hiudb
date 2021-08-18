@@ -36,13 +36,15 @@ Route::get('/incoming-event', [homeController::class, 'incomingEvent']);
 Route::get('/past-event', [homeController::class, 'pastEvent']);
 Route::post('/register-event', [homeController::class, 'registerEvent']);
 
-Route::get('/login',function () {
+Route::get(
+    '/login',
+    function () {
         return view('login');
     }
 );
 
-Route::post('/login', [AuthController::class,'login']);
-Route::get('/logout', [AuthController::class,'logout']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::get(
     '/register-page',
@@ -55,7 +57,7 @@ Route::post('/register-page', [AuthController::class, 'registerMember']);
 
 
 Route::prefix('/admin')->middleware(Admin::class)->group(function () {
-    Route::get('/',[DashboardController::class, 'index']);
+    Route::get('/', [DashboardController::class, 'index']);
 
     Route::prefix('/event')->group(
         function () {
@@ -70,28 +72,24 @@ Route::prefix('/admin')->middleware(Admin::class)->group(function () {
     Route::get('/comitee', [ComiteeController::class, 'index']);
     Route::post('/comitee', [ComiteeController::class, 'index']);
 
-    Route::get('/member', [MemberController::class,'index']);
-
+    Route::get('/member', [MemberController::class, 'index']);
 });
 
 
-Route::prefix('/user')->middleware(Member::class)->group(function (){
-    Route::get('/',[DashboardUserController::class,'index']);
-    Route::post('/profile/account',[DashboardUserController::class,'editAccount']);
-    Route::match(['post','get'],'/profile',[DashboardUserController::class,'profile']);
-
+Route::prefix('/user')->middleware(Member::class)->group(function () {
+    Route::get('/', [DashboardUserController::class, 'index']);
+    Route::post('/profile/account', [DashboardUserController::class, 'editAccount']);
+    Route::match(['post', 'get'], '/profile', [DashboardUserController::class, 'profile']);
+    Route::get('/cetakPendaftaran/{id}', [MemberController::class, 'cetakPendaftaran'])->name('cetakPendaftaran');
 });
 
-Route::prefix('/comitee')->middleware(Comitee::class)->group(function (){
-    Route::match(['post','get'],'/',[DashboardComiteeController::class,'index']);
-    Route::get('/event/{id}',[DashboardComiteeController::class,'getParticipant']);
-    Route::post('/event/report/{id}',[DashboardComiteeController::class,'reportEvent']);
-
+Route::prefix('/comitee')->middleware(Comitee::class)->group(function () {
+    Route::match(['post', 'get'], '/', [DashboardComiteeController::class, 'index']);
+    Route::get('/event/{id}', [DashboardComiteeController::class, 'getParticipant']);
+    Route::post('/event/report/{id}', [DashboardComiteeController::class, 'reportEvent']);
 });
-
 
 
 
 
 Route::post('/register', [AuthController::class, 'register']);
-

@@ -81,6 +81,9 @@
                     </td>
                 </tr>
             @empty
+                <tr>
+                    <td class="text-center" colspan="7">Tidak ada event</td>
+                </tr>
             @endforelse
 
         </table>
@@ -109,18 +112,6 @@
                                                href="https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1555064738/mpnomhxtbuxt318u4gu1.jpg">
                                                 <img src="https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1555064738/mpnomhxtbuxt318u4gu1.jpg"
                                                      style="height: 150px; width: 200px; object-fit: cover"/>
-
-                                            </a>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label class="form-label">Map</label>
-                                            <a id="targetMap" class="d-block" style="cursor: pointer" target="_blank"
-                                               href="">
-                                                <iframe
-                                                    src=""
-                                                    width="200" height="150" style="border:0;" allowfullscreen=""
-                                                    loading="lazy"></iframe>
 
                                             </a>
                                         </div>
@@ -279,17 +270,6 @@
                                     <label for="lokasiEvent" class="form-label">Lokasi</label>
                                     <input type="text" class="form-control" id="event_location" name="event_location" required>
                                 </div>
-
-                                <div class="mb-3">
-                                    <label for="latitudeEvent" class="form-label">Latitude</label>
-                                    <input type="text" class="form-control" id="latitude" name="latitude">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="LongitudeEvent" class="form-label">Longitude</label>
-                                    <input type="text" class="form-control" id="longitude" name="longitude">
-                                </div>
-
                                 <div class="mb-3">
                                     <label for="deskripsiEvent" class="form-label">Deskripsi</label>
                                     <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
@@ -441,8 +421,6 @@
                 }
                 tabel.empty();
                 $('#divTabel').removeClass('h400');
-                $('#targetMap').attr('href', 'https://maps.google.com/maps?q=' + data['latitude'] + ',' + data['longitude'] + '&z=15&output=embed')
-                $('#targetMap iframe').attr('src', 'https://maps.google.com/maps?q=' + data['latitude'] + ',' + data['longitude'] + '&z=15&output=embed')
                 if (data['get_participant'].length > 0) {
                     $.each(data['get_participant'], function (key, value) {
                         $('#divTabel').addClass('h400');
@@ -472,8 +450,6 @@
             $('#formTambahEvent #start_date').val('');
             $('#formTambahEvent #end_date').val('');
             $('#formTambahEvent #event_location').val('');
-            $('#formTambahEvent #latitude').val('');
-            $('#formTambahEvent #longitude').val('');
             $('#formTambahEvent #start_register_date').val('');
             $('#formTambahEvent #end_register_date').val('');
             $('#formTambahEvent #quota').val('');
@@ -494,8 +470,6 @@
                 $('#formTambahEvent #start_date').val(data['start_date']);
                 $('#formTambahEvent #end_date').val(data['end_date']);
                 $('#formTambahEvent #event_location').val(data['event_location']);
-                $('#formTambahEvent #latitude').val(data['latitude']);
-                $('#formTambahEvent #longitude').val(data['longitude']);
                 $('#formTambahEvent #start_register_date').val(data['start_register_date']);
                 $('#formTambahEvent #end_register_date').val(data['end_register_date']);
                 $('#formTambahEvent #quota').val(data['quota']);

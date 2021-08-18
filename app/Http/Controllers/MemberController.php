@@ -17,4 +17,18 @@ class MemberController extends CustomController
         $user = User::with('getMember')->where('role','=','member')->get();
         return view('admin.member.member')->with(['user' => $user]);
     }
+
+    public function cetakPendaftaran(Request $request)
+    {
+
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($this->dataPendaftaran($request))->setPaper('f4', 'landscape');
+        return $pdf->stream();
+    }
+
+    public function dataPendaftaran($id)
+    {
+     
+        return view('user/cetakPendaftaran');
+    }
 }
