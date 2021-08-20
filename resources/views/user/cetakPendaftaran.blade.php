@@ -35,24 +35,47 @@
 
         <div>
             <h4 style=" text-align: center;margin-bottom:0;margin-top:0">Duta Bangsa University</h4>
-            <h5 style=" text-align: center;margin-bottom:0;margin-top:0">Nama Event</h5>
-            <h5 style=" text-align: center;margin-bottom:0;margin-top:0">Tanggal Pelaksanaan</h5>
+            <h5 style=" text-align: center;margin-bottom:0;margin-top:0">{{$data->getEvent->event_name}}</h5>
+            <h5 style=" text-align: center;margin-bottom:0;margin-top:0">{{date('d F Y', strtotime($data->getEvent->start_date))}} - {{date('d F Y', strtotime($data->getEvent->end_date))}}</h5>
         </div>
 
         <hr>
         <h5 style="margin-bottom:0">PARTICIPANT CARD</h5>
-        <p>Name :</p>
-        <p>Passport :</p>
-        <p>Date Of Birth :</p>
-        <p>Institude :</p>
-        <br>
+        <div class="" style="display: flex">
+            <div class="">
+                <table class="table">
+                    <tr>
+                        <td rowspan="4" class="mx-3" width="100" style="text-align: center"><img src="{{public_path($data->getMember->image)}}" height="100" style="object-fit: cover"></td>
+                        <td>Name</td>
+                        <td>:</td>
+                        <td>{{$data->getMember->name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Passport</td>
+                        <td>:</td>
+                        <td>{{$data->getMember->passport}}</td>
+                    </tr>
+                    <tr>
+                        <td>Date Of Birth</td>
+                        <td>:</td>
+                        <td>{{$data->getMember->dob}}</td>
+                    </tr>
+                    <tr>
+                        <td>Date Of Birth</td>
+                        <td>:</td>
+                        <td>{{$data->getMember->institute}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
 
-        
+
+
         <div style="width:200px; margin-left:auto">
-            <p style="text-align: center; margin-bottom:0">Surakarta, tanggal cetak</p>
+            <p style="text-align: center; margin-bottom:0">{{date('d F Y', strtotime(now("Asia/Jakarta")))}}</p>
             <p style="text-align: center;margin-top:0">Comitee Chairman</p>
             <br>
-            <p style="text-align: center">Nama Comitee</p>
+            <p style="text-align: center">( {{$data->getEvent->getComitee->name}} )</p>
         </div>
     </div>
 

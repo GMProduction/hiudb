@@ -74,6 +74,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'imageProfile' => [
+            'driver' => 'local',
+            'root' => public_path() . '/images/profile',
+            'url' => env('APP_URL') . '/storage',
+            'visibility' => 'public',
+        ],
+
     ],
 
     /*

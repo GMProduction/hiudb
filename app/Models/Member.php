@@ -19,7 +19,8 @@ class Member extends Model
         'gender',
         'url_passport',
         'phone',
-        'id_user'
+        'id_user',
+        'image'
     ];
 
     /**

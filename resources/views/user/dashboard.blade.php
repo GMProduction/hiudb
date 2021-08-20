@@ -61,7 +61,7 @@
 
 
                         <td>
-                            <a type="button" class="btn btn-primary btn-sm" id="detailData"  data-payment="{{$u->url_payment}}" data-status="{{$u->status}}" data-location="{{$u->getEvent->event_location}}" data-end="{{$u->getEvent->end_date}}" data-start="{{$u->getEvent->start_date}}" data-event-name="{{$u->getEvent->event_name}}" data-cover="{{$u->getEvent->url_cover}}">Detail
+                            <a type="button" class="btn btn-primary btn-sm" id="detailData" data-id-event="{{$u->id_event}}"  data-payment="{{$u->url_payment}}" data-status="{{$u->status}}" data-location="{{$u->getEvent->event_location}}" data-end="{{$u->getEvent->end_date}}" data-start="{{$u->getEvent->start_date}}" data-event-name="{{$u->getEvent->event_name}}" data-cover="{{$u->getEvent->url_cover}}">Detail
                             </a>
                         </td>
                     </tr>
@@ -124,7 +124,7 @@
 
                                             <div class="mb-4"></div>
                                             <a class="btn btn-success" target="_blank" href="https://wa.me/62912391872">Contact Admin</a>
-                                            <a class="btn btn-warning" href="/user/cetakPendaftaran/{id}">Print Card</a>
+                                            <a class="btn btn-warning" href="" id="printCard">Print Card</a>
 
                                         </div>
                                     </div>
@@ -148,13 +148,17 @@
     $(document).on('click', '#detailData', function () {
         var status = $(this).data('status');
         var textStatus = '( Waiting for admin confirmation )';
+        $('#detail #printCard').addClass('d-none')
         if (status === 1){
             textStatus = '( Accepted )'
+            $('#detail #printCard').removeClass('d-none')
+
         }else if(status === 2){
             textStatus = '( Rejected )'
         }
         $('#detail #cover').attr('src',$(this).data('cover'));
         $('#detail #payment').attr('href',$(this).data('payment'));
+        $('#detail #printCard').attr('href','/user/cetakPendaftaran/'+$(this).data('id-event'));
         $('#detail #payment img').attr('src',$(this).data('payment'));
         $('#detail #event_name').html($(this).data('event-name'));
         $('#detail #status').html(textStatus);

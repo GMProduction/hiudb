@@ -26,7 +26,13 @@
 
             <div class="row">
                 <div class="col-6">
-
+                    <div class="mb-3" style="height: 100px">
+                        <a class="d-block mt-2" style="cursor: pointer" target="_blank"
+                           href="{{$user->getMember->image ?? asset('/static-image/profile.png')}}">
+                            <img src="{{$user->getMember->image ??  asset('/static-image/profile.png')}}"
+                                 style="height: 100px; object-fit: cover"/>
+                        </a>
+                    </div>
                     <div class="mb-3">
                         <label class="form-label">Nama</label>
                         <p class="fw-bold">{{$user->getMember->name}}</p>
@@ -90,6 +96,15 @@
                                 <div class="box-border mt-4">
                                     <div class="row">
                                         <div class="col-lg-6">
+                                            <div class="mb-2" style="height: 100px">
+                                                <label for="image" class="form-label">Image Profile</label>
+                                                <input class="form-control" type="file" id="image" name="image">
+                                                <a class="d-block mt-2" style="cursor: pointer" target="_blank"
+                                                   href="{{$user->getMember->image ?? ''}}">
+                                                    <img src="{{$user->getMember->image ?? ''}}"
+                                                         style="height: 100px; object-fit: cover"/>
+                                                </a>
+                                            </div>
                                             <div class="mb-2">
                                                 <label for="namaeditbarang" class="form-label t">Name</label>
                                                 <input type="text" class="form-control" id="name" name="name" value="{{$user->getMember->name}}">

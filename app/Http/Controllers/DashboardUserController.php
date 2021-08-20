@@ -48,6 +48,18 @@ class DashboardUserController extends CustomController
                     'dob'          => $fieldMember['dob'],
                 ];
 
+                $imageProfile = $this->request->files->get('image');
+                if($imageProfile || $imageProfile != ''){
+                    if ($user->getMember->image){
+                        if (file_exists('../public'.$user->getMember->image)) {
+                            unlink('../public'.$user->getMember->image);
+                        }
+                    }
+                    $image = $this->generateImageName('image');
+                    $stringImg = '/images/profile/'.$image;
+                    $this->uploadImage('image', $image, 'imageProfile');
+                    $dataSave = Arr::add($dataSave, 'image', $stringImg);
+                }
 
                 $imageFile = $this->request->files->get('url_passport');
                 if($imageFile || $imageFile != ''){
@@ -58,7 +70,7 @@ class DashboardUserController extends CustomController
                     }
                     $image = $this->generateImageName('url_passport');
                     $stringImg = '/images/passport/'.$image;
-                    $this->uploadImage('url_passport', $image, 'imageEvent');
+                    $this->uploadImage('url_passport', $image, 'imagePassport');
                     $dataSave = Arr::add($dataSave, 'url_passport', $stringImg);
                 }
                 $user->getMember->update($dataSave);
