@@ -60,6 +60,7 @@ class AuthController extends CustomController
                 'url_passport' => $stringImg,
             ]
         );
+        Auth::loginUsingId($user->id);
 
         return $this->jsonResponse(['msg' => 'berhasil mendaftar'], 200);
 
