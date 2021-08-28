@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bootstrap 5 Side Bar Navigation</title>
+    <title>Commitee HI UDB</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,10 +22,10 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet" />
     <!-- custom css -->
+    <script src="{{ asset('js/swal.js') }}"></script>
 
     @yield('css')
 
-    <script src="{{ asset('js/swal.js') }}"></script>
 
 </head>
 
@@ -39,7 +39,7 @@
 
 
 
-            <a href="/comitee">
+            <a href="/commitee">
                 <li href="#" class="nav-link t-white">
                     <i class="bx bxs-dashboard"></i>
                     <span class="mx-2">Dashboard</span>
@@ -76,7 +76,7 @@
         <!-- Top Nav -->
         <nav class="navbar top-navbar navbar-light b-white px-5 " style="z-index: 10">
             <a class="btn border-0" id="menu-btn"><i class="bx bx-menu"></i></a>
-            <a>@yield('title')</a>
+            <a class="d-none">@yield('title')</a>
         </nav>
         <!--End Top Nav -->
         <div class="content-wrapper bg-light p-2" style="height: 100vh;">
@@ -92,6 +92,7 @@
     <script src="{{ asset('js/sidebar.js') }}"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="{{ asset('js/moment.js') }}"></script>
+    <script src="{{ asset('js/dialog.js') }}"></script>
 
     @yield('script')
 </body>

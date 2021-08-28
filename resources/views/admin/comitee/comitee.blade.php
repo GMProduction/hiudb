@@ -18,8 +18,8 @@
 
 
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h5>Data Comitee</h5>
-                <button type="button ms-auto" class="btn btn-primary btn-sm" id="addData">Tambah Data Comitee</button>
+                <h5>Data Commitee</h5>
+                <button type="button ms-auto" class="btn btn-primary btn-sm" id="addData">Tambah Data Commitee</button>
             </div>
 
             <table class="table table-striped table-bordered ">
@@ -66,7 +66,7 @@
                     </td>
                 </tr>
                 @empty
-                    <tr><td colspan="5" class="text-center">Tidak ada data comitee</td></tr>
+                    <tr><td colspan="5" class="text-center">Tidak ada data commitee</td></tr>
                 @endforelse
             </table>
 
@@ -81,7 +81,7 @@
                 <div class="modal-dialog modal-md">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Tambah Comitee</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Tambah Commitee</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -164,6 +164,8 @@
                     if (willDelete) {
                         swal("Berhasil Menghapus data!", {
                             icon: "success",
+                            buttons: false,
+                            timer: 1000
                         });
                     } else {
                         swal("Data belum terhapus");
@@ -173,7 +175,7 @@
 
         function reegister() {
             swal({
-                title: "Tambah data comitee",
+                title: "Tambah data commitee",
                 text: "Apa kamu yakin ?",
                 icon: "info",
                 buttons: true,
@@ -193,6 +195,8 @@
                                 if (xhr.status === 200) {
                                     swal("Berhasil", {
                                         icon: "success",
+                                        buttons: false,
+                                        timer: 1000,
                                     }).then((dat) => {
                                         window.location.reload();
 

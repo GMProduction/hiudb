@@ -245,7 +245,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="formTambahEvent" method="post" enctype="multipart/form-data">
+                    <form id="formTambahEvent" method="post" enctype="multipart/form-data" onsubmit="return saveEvent()">
                         @csrf
                         <input id="id" name="id" hidden>
                         <div class="row">
@@ -345,6 +345,15 @@
             $('#laporan').modal('show')
         })
 
+
+        function saveEvent(){
+            var title = 'Tambah Event';
+            if ($('#formTambahEvent #id').val() !== ''){
+                title = 'Edit Event';
+            }
+            saveData(title,'formTambahEvent');
+            return false;
+        }
         function reportEvent(){
             var form_data = new FormData($('#fromReportEvent')[0]);
 
@@ -359,7 +368,7 @@
                     if (res) {
                         $.ajax({
                             type: "POST",
-                            url: '/comitee/event/report/'+id_event,
+                            url: '/commitee/event/report/'+id_event,
                             data: form_data,
                             async: true,
                             processData: false,
@@ -400,7 +409,7 @@
         }
 
         async function getDetailEvent(id) {
-            await $.get('/comitee/event/' + id, function (data) {
+            await $.get('/commitee/event/' + id, function (data) {
                 $('#detail #name_event').html(data['event_name']);
                 $('#detail #start_date').html(moment(data['start_date']).format('DD MMMM YYYY'));
                 $('#detail #end_date').html(moment(data['end_date']).format('DD MMMM YYYY'));
@@ -465,7 +474,7 @@
             $('#formTambahEvent #id').val(id);
             $('#formTambahEvent #url_cover').removeAttr('required');
 
-            $.get('/comitee/event/' + id, function (data) {
+            $.get('/commitee/event/' + id, function (data) {
                 $('#formTambahEvent #event_name').val(data['event_name']);
                 $('#formTambahEvent #start_date').val(data['start_date']);
                 $('#formTambahEvent #end_date').val(data['end_date']);

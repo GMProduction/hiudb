@@ -87,7 +87,7 @@ class ComiteeController extends CustomController
                 );
             }
 
-            return redirect('/admin/comitee');
+            return redirect('/admin/commitee');
         }
 
         $comitee = User::with(['getComitee'])->where('role', '=', 'comitee')->get();

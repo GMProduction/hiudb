@@ -52,10 +52,10 @@
             </a>
 
 
-            <a href="/admin/comitee">
+            <a href="/admin/commitee">
                 <li href="#" class="nav-link t-white">
                     <i class="bx bxs-face"></i>
-                    <span class="mx-2">Data Comitee</span>
+                    <span class="mx-2">Data Commitee</span>
                 </li>
 
             </a>
@@ -87,7 +87,7 @@
         <!-- Top Nav -->
         <nav class="navbar top-navbar navbar-light b-white px-5 " style="z-index: 10">
             <a class="btn border-0" id="menu-btn"><i class="bx bx-menu"></i></a>
-            <a>@yield('title')</a>
+            <a class="d-none">@yield('title')</a>
         </nav>
         <!--End Top Nav -->
         <div class="content-wrapper bg-light p-2" style="height: 100vh;">

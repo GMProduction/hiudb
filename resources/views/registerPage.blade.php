@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Peminjaman Alat</title>
+    <title>Register</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -126,7 +126,7 @@
                                             name="submit">Register
                                     </button>
                                     <span class="d-block mt-2">Have an account ? <a class="ms-2 link"
-                                                                                    href="/register">Sign In.</a></span>
+                                                                                    href="/login">Sign In.</a></span>
                                 </div>
 
                             </div>
@@ -193,8 +193,10 @@
                             if (xhr.status === 200) {
                                 swal("Berhasil mendaftar!", {
                                     icon: "success",
+                                    buttons: false,
+                                    timer: 1000
                                 }).then((dat) => {
-                                    // window.location.reload();
+                                    window.location = '/'
                                 });
                             } else {
                                 swal(data['msg'])

@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 
 class AuthController extends CustomController
 {
@@ -80,14 +81,14 @@ class AuthController extends CustomController
             if (Auth::user()->role === 'admin'){
                 $redirect = '/admin';
             }elseif (Auth::user()->role === 'comitee'){
-                $redirect = '/comitee';
+                $redirect = '/commitee';
 
             }
 
             return redirect($redirect);
         }
 
-        return redirect()->back()->withInput()->with('failed', 'Periksa Kembali Username dan Password Anda');
+        return Redirect::back()->withErrors(['failed', 'Periksa Kembali Username dan Password Anda']);
     }
 
     /**

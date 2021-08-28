@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Peminjaman Alat</title>
+    <title>Login</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/myStyle.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}" type="text/css">
+    <script src="{{ asset('js/swal.js') }}"></script>
 
     <!-- Styles -->
 
@@ -22,7 +23,15 @@
 
 
 <body>
-
+@if($errors->any())
+    <script>
+        swal("Login Gagal !", {
+            icon: "warning",
+            buttons: false,
+            timer: 1000
+        })
+    </script>
+@endif
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 col-md-12 col-lg-12">

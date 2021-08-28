@@ -69,8 +69,8 @@ Route::prefix('/admin')->middleware(Admin::class)->group(function () {
     );
 
 
-    Route::get('/comitee', [ComiteeController::class, 'index']);
-    Route::post('/comitee', [ComiteeController::class, 'index']);
+    Route::get('/commitee', [ComiteeController::class, 'index']);
+    Route::post('/commitee', [ComiteeController::class, 'index']);
 
     Route::get('/member', [MemberController::class, 'index']);
 });
@@ -78,12 +78,14 @@ Route::prefix('/admin')->middleware(Admin::class)->group(function () {
 
 Route::prefix('/user')->middleware(Member::class)->group(function () {
     Route::get('/', [DashboardUserController::class, 'index']);
+    Route::post('/chgange-payment/{id}', [DashboardUserController::class, 'changePayment']);
+    Route::post('/repair/{id}', [DashboardUserController::class, 'repair']);
     Route::post('/profile/account', [DashboardUserController::class, 'editAccount']);
     Route::match(['post', 'get'], '/profile', [DashboardUserController::class, 'profile']);
     Route::get('/cetakPendaftaran/{id}', [MemberController::class, 'cetakPendaftaran'])->name('cetakPendaftaran');
 });
 
-Route::prefix('/comitee')->middleware(Comitee::class)->group(function () {
+Route::prefix('/commitee')->middleware(Comitee::class)->group(function () {
     Route::match(['post', 'get'], '/', [DashboardComiteeController::class, 'index']);
     Route::get('/event/{id}', [DashboardComiteeController::class, 'getParticipant']);
     Route::post('/event/report/{id}', [DashboardComiteeController::class, 'reportEvent']);

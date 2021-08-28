@@ -200,7 +200,7 @@
                                 <div id="btnKonfirmasi" class="">
                                     <a type="submit" id="konfirmasi" class="btn btn-primary konfirmasi"
                                         data-status="1">Terima</a>
-                                    <a class="btn btn-danger" id="alasanTolak">Tolak</a>
+                                    <a type="button" class="btn btn-danger" id="alasanTolak">Tolak</a>
                                 </div>
 
                             </div>
@@ -224,13 +224,11 @@
                 </div>
                 <div class="modal-body">
 
-                    <div class="mb-3">
-                        <label for="alassan" class="form-label">Alasan Menolak</label>
-                        <textarea class="form-control" id="alassan" rows="3"></textarea>
-                    </div>
-                    <a type="submit" id="konfirmasi" class="btn btn-primary w-100 konfirmasi" data-status="2">Kirim</a>
-
-
+                      <div class="mb-3">
+                          <label for="alassan" class="form-label">Alasan Menolak</label>
+                          <textarea class="form-control" id="alassan" rows="3"></textarea>
+                      </div>
+                      <a id="konfirmasi" class="btn btn-primary konfirmasi" data-status="2" style="width: 90%">Kirim</a>
                 </div>
 
             </div>

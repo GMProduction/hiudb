@@ -27,6 +27,9 @@
                     #
                 </th>
                 <th>
+                    Cover
+                </th>
+                <th>
                     Nama Event
                 </th>
                 <th>
@@ -54,6 +57,9 @@
                     <tr>
                         <td>
                             {{$key + 1}}
+                        </td>
+                        <td>
+                            <img src="{{$e->url_cover}}" style="height: 70px">
                         </td>
                         <td>
                             {{$e->event_name}}
@@ -342,9 +348,7 @@
                         <label for="alassan" class="form-label">Alasan Menolak</label>
                         <textarea class="form-control" id="alassan" rows="3"></textarea>
                     </div>
-                    <a type="submit" id="konfirmasi" class="btn btn-primary w-100 konfirmasi" data-status="2" >Kirim</a>
-
-
+                    <a id="konfirmasi" class="btn btn-primary konfirmasi" data-status="2" style="width: 90%">Kirim</a>
                 </div>
 
             </div>
@@ -421,9 +425,9 @@
                                     </a>
                                 </div>
 
-                                <a>Pilih Comitee</a>
+                                <a>Pilih Commitee</a>
                                 <select class="form-select" aria-label="Default select example" name="id_comitee" id="id_comitee" required>
-                                    <option selected value="">Pilih Comitee</option>
+                                    <option selected value="">Pilih Commitee</option>
                                     @foreach($comitee as $com)
                                         <option value="{{$com->id}}">{{$com->name}}</option>
                                     @endforeach
@@ -597,7 +601,7 @@
                                        $('#alasanMenolak').modal('hide')
                                        $('#detail-participant #ketAlasan').addClass('d-none');
 
-                                       if (status === 2){
+                                       if (status === '2'){
                                            $('#detail-participant #ketAlasan').removeClass('d-none');
                                            $('#detail-participant #txtAlasan').html(alasan)
                                        }

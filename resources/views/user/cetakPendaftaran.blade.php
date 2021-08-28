@@ -73,7 +73,7 @@
 
         <div style="width:200px; margin-left:auto">
             <p style="text-align: center; margin-bottom:0">{{date('d F Y', strtotime(now("Asia/Jakarta")))}}</p>
-            <p style="text-align: center;margin-top:0">Comitee Chairman</p>
+            <p style="text-align: center;margin-top:0">Commitee Chairman</p>
             <br>
             <p style="text-align: center">( {{$data->getEvent->getComitee->name}} )</p>
         </div>

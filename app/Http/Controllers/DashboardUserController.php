@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helper\CustomController;
 use App\Models\Event;
+use App\Models\Participant;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -117,5 +118,34 @@ class DashboardUserController extends CustomController
         }
         return $this->jsonResponse(['msg' => 'berhasil merubah account'], 200);
 
+    }
+
+
+    public function changePayment($id){
+        $participant = Participant::find($id);
+
+        if (file_exists('../public'.$participant->url_payment)) {
+            unlink('../public'.$participant->url_payment);
+        }
+        $image = $this->generateImageName('payment');
+        $stringImg = '/images/payment/'.$image;
+        $this->uploadImage('payment', $image, 'imagePayment');
+
+        $participant->update(['url_payment' => $stringImg]);
+
+        return response()->json(['data' => $stringImg]);
+    }
+
+    public function repair($id){
+        $participant = Participant::find($id);
+
+
+
+        $participant->update([
+            'status' => 0,
+            'reason_of_reject' => null
+        ]);
+
+        return response()->json('success');
     }
 }

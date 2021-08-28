@@ -18,6 +18,7 @@ class DashboardComiteeController extends CustomController
 
         if ($this->request->isMethod('POST')){
             $comite = Comitee::where('id_user','=',Auth::id())->first();
+
             if ($this->request->get('id')){
                 $event = Event::find($this->request->get('id'));
                 $dataSave = [
@@ -32,7 +33,7 @@ class DashboardComiteeController extends CustomController
                     'id_comitee' => $comite->id
 
                 ];
-                $imageFile = $this->request->files->get('url_gambar');
+                $imageFile = $this->request->files->get('url_cover');
                 if($imageFile || $imageFile != ''){
                     if ($event->url_cover){
                         if (file_exists('../public'.$event->url_cover)) {
@@ -63,7 +64,7 @@ class DashboardComiteeController extends CustomController
                     'id_comitee' => $comite->id,
                 ]);
             }
-            return redirect('/comitee');
+            return redirect('/commitee');
         }
         $event = Event::with('getComitee')->whereHas(
             'getComitee',

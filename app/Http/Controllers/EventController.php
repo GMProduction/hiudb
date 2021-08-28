@@ -28,7 +28,7 @@ class EventController extends CustomController
                     'quota' => $this->request->get('quota'),
                     'id_comitee' => $this->request->get('id_comitee'),
                 ];
-                $imageFile = $this->request->files->get('url_gambar');
+                $imageFile = $this->request->files->get('url_cover');
                 if($imageFile || $imageFile != ''){
                     if ($event->url_cover){
                         if (file_exists('../public'.$event->url_cover)) {
