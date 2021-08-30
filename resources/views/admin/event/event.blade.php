@@ -84,8 +84,7 @@
                             </a>
                             <button type="button" class="btn btn-success btn-sm" id="editData" data-id="{{$e->id}}">Edit
                             </button>
-                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#detail">Hapus
+                            <button type="button" class="btn btn-danger btn-sm" data-name="{{$e->event_name}}" data-id="{{$e->id}}" id="deleteData">Hapus
                             </button>
                         </td>
                     </tr>
@@ -472,6 +471,13 @@
             saveData(title,'formTambahEvent');
             return false;
         }
+
+        $(document).on('click','#deleteData', function () {
+            var id = $(this).data('id');
+            var name = $(this).data('name');
+            deleteData(name,window.location.pathname+'/'+id+'/delete')
+            return false;
+        })
 
         $(document).on('click', '#addData', async function () {
             $('#formTambahEvent #event_name').val('');

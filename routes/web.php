@@ -64,6 +64,7 @@ Route::prefix('/admin')->middleware(Admin::class)->group(function () {
             Route::get('/', [EventController::class, 'index']);
             Route::post('/', [EventController::class, 'index']);
             Route::get('/{id}', [EventController::class, 'getDetailEvent'])->name('detail-event');
+            Route::get('/{id}/delete', [EventController::class, 'delete']);
             Route::post('/{id}/konfirmasi/{participant}', [EventController::class, 'konfirmasi']);
         }
     );

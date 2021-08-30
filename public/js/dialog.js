@@ -86,9 +86,12 @@ function deleteData(text, url, resposeSuccess) {
                         if (xhr.status === 200) {
                             swal("Data Deleted ", {
                                 icon: "success",
+                                timer: 1000
                             }).then((dat) => {
                                 if (resposeSuccess) {
                                     resposeSuccess()
+                                }else{
+                                    window.location.reload()
                                 }
                             });
                         } else {

@@ -117,4 +117,10 @@ class EventController extends CustomController
         }
 
     }
+
+    function delete($id){
+        $event = Event::find($id);
+        Event::destroy($id);
+        return response()->json('success');
+    }
 }
