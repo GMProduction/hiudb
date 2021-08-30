@@ -120,6 +120,11 @@ class EventController extends CustomController
 
     function delete($id){
         $event = Event::find($id);
+        if ($event->url_cover){
+            if (file_exists('../public'.$event->url_cover)) {
+                unlink('../public'.$event->url_cover);
+            }
+        }
         Event::destroy($id);
         return response()->json('success');
     }
