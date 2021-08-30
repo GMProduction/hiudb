@@ -44,7 +44,7 @@
 
 
                     <li class="nav-item">
-                        <a class="nav-link" href="https://udb.ac.id/">About Us</a>
+                        <a class="nav-link" href="/about-us">About Us</a>
                     </li>
 
 
