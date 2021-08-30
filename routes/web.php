@@ -31,6 +31,14 @@ Route::get(
         return view('home');
     }
 );
+
+Route::get(
+    '/about-us',
+    function () {
+        return view('tentang');
+    }
+);
+
 Route::get('/event-now', [homeController::class, 'getNowEvent']);
 Route::get('/incoming-event', [homeController::class, 'incomingEvent']);
 Route::get('/past-event', [homeController::class, 'pastEvent']);
