@@ -224,7 +224,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="fromReportEvent" onsubmit="return reportEvent()">
+                        <form id="fromReportEvent" onsubmit="return reportEvent()" enctype="multipart/form-data">
                             @csrf
                             <input id="id_report" name="id_report" hidden>
                             <textarea id="summernote" name="information"></textarea>
@@ -380,8 +380,10 @@
                                 console.log(data);
 
                                 if (xhr.status === 200) {
-                                    swal("Profile Updated ", {
+                                    swal("Data Updated ", {
                                         icon: "success",
+                                        buttons: false,
+                                        timer: 1000
                                     }).then((dat) => {
                                         // window.location.reload();
                                     });

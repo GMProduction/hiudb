@@ -26,6 +26,8 @@ function saveData(title, form, url, resposeSuccess) {
                         if (xhr.status === 200) {
                             swal("Data Updated ", {
                                 icon: "success",
+                                buttons: false,
+                                timer: 1000
                             }).then((dat) => {
                                 if (resposeSuccess) {
                                     resposeSuccess()
@@ -48,7 +50,8 @@ function saveData(title, form, url, resposeSuccess) {
                         console.log(xhr.status);
                         console.log(textStatus);
                         console.log(error.responseJSON);
-                        swal(error.responseJSON.errors[Object.keys(error.responseJSON.errors)[0]][0])
+                        swal(error.responseJSON.errors ? error.responseJSON.errors[Object.keys(error.responseJSON.errors)[0]][0] : error.responseJSON['message'] ? error.responseJSON['message'] : error.responseJSON['msg'] )
+
                     }
                 })
             }
@@ -110,7 +113,8 @@ function deleteData(text, url, resposeSuccess) {
                         console.log(xhr.status);
                         console.log(textStatus);
                         console.log(error.responseJSON);
-                        swal(error.responseJSON.errors[Object.keys(error.responseJSON.errors)[0]][0])
+                        swal(error.responseJSON.errors ? error.responseJSON.errors[Object.keys(error.responseJSON.errors)[0]][0] : error.responseJSON['message'] ? error.responseJSON['message'] : error.responseJSON['msg'] )
+
                     }
                 })
             }

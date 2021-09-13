@@ -32,12 +32,7 @@ Route::get(
     }
 );
 
-Route::get(
-    '/laporan-event',
-    function () {
-        return view('laporanEvent');
-    }
-);
+Route::get('/laporan-event/{id}',[homeController::class,'laporan']);
 
 Route::get(
     '/about-us',

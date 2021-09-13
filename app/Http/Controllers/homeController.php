@@ -80,4 +80,14 @@ class homeController extends CustomController
 
         return $this->jsonResponse(['msg' => 'berhasil mendaftar'], 200);
     }
+
+    public function laporan($id){
+        $event = Event::with(['getReport','getComitee'])->find($id);
+        $participant = Participant::where([['id_event','=',$id],['status','=',1]])->count('*');
+        $data = [
+          'event' => $event,
+          'participant' => $participant
+        ];
+        return view('laporanEvent')->with($data);
+    }
 }

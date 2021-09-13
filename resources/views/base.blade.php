@@ -134,7 +134,8 @@
                         </td>
 
                         <td>
-                            <p>info@udb.ac.id</p>
+
+                            <a style="cursor: pointer" href="mailto:info@udb.ac.id" target="_blank"><p>info@udb.ac.id</p></a>
 
                         </td>
 
