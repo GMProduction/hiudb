@@ -33,6 +33,13 @@ Route::get(
 );
 
 Route::get(
+    '/laporan-event',
+    function () {
+        return view('laporanEvent');
+    }
+);
+
+Route::get(
     '/about-us',
     function () {
         return view('tentang');

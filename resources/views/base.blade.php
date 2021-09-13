@@ -23,7 +23,7 @@
 
 <body class="antialiased">
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top navtop">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top navtop" >
         <div class="container">
             <div class="d-flex items-center">
                 <a href="/">
