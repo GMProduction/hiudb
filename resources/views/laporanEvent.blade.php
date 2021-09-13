@@ -10,6 +10,7 @@
         <div style="height: 130px"></div>
         <h4>Laporan Event (Nama Event)</h4>
         <h5>Tanggal -</h5>
+        <h5>Jumlah Peserta</h5>
 
         {{-- COVER --}}
         <div class="w-100">
@@ -19,6 +20,10 @@
         {{-- isi laporan --}}
         <div>
             isi laporan
+        </div>
+
+        <div>
+            - Comite Sopo
         </div>
     </section>
 
