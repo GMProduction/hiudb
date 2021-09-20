@@ -39,7 +39,9 @@
             <th>
                 Selesai
             </th>
-
+            <th>
+                Status
+            </th>
             <th>
                 Lokasi
             </th>
@@ -65,6 +67,9 @@
                     </td>
                     <td>
                         {{date('d F Y', strtotime($e->end_date))}}
+                    </td>
+                    <td style=" {{$e->status == 'Registration' ? 'color: orange' : ($e->status == 'Incoming Event' ? 'color: green' : ($e->status == 'Ongoing Event' ? 'color:blue' : 'color: red'))}}">
+                        {{$e->status}}
                     </td>
                     <td>
                         {{$e->event_location}}

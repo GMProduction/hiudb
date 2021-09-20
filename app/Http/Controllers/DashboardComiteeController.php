@@ -79,6 +79,17 @@ class DashboardComiteeController extends CustomController
                 $sold            = count($participant);
                 $stok            = (int)$e->quota - (int)$sold;
                 $dataEvent[$key] = Arr::add($e, 'remaining', $stok);
+                if ($e->start_date > $this->now->format('Y-m-d')){
+                    if ($e->start_register_date <=  $this->now->format('Y-m-d') && $e->end_register_date >= $this->now->format('Y-m-d')){
+                        Arr::set($dataEvent[$key], 'status', 'Registration');
+                    }else{
+                        Arr::set($dataEvent[$key], 'status', 'Incoming Event');
+                    }
+                }elseif ($e->start_date <= $this->now->format('Y-m-d') && $e->end_date >= $this->now->format('Y-m-d')){
+                    Arr::set($dataEvent[$key],'status', 'Ongoing Event');
+                }else{
+                    Arr::set($dataEvent[$key],'status', 'Past Event');
+                }
             }
         }
 
