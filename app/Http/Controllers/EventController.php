@@ -62,7 +62,7 @@ class EventController extends CustomController
             return redirect('/admin/event');
         }
 
-        $event = Event::all();
+        $event = Event::orderByDesc('start_date')->get();
         $comitee = Comitee::all();
         $dataEvent = [];
 

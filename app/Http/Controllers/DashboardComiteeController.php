@@ -66,7 +66,7 @@ class DashboardComiteeController extends CustomController
             }
             return redirect('/commitee');
         }
-        $event = Event::with('getComitee')->whereHas(
+        $event = Event::with('getComitee')->orderByDesc('start_date')->whereHas(
             'getComitee',
             function ($query) {
                 return $query->where('id_user', '=', Auth::id());
